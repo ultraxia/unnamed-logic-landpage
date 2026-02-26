@@ -65,9 +65,15 @@ export function HeroSection() {
             mounted ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}
         >
-          <Button size="lg" className="w-full px-8 text-base sm:w-auto">
-            {"申请机构演示资格"}
-            <ArrowRight className="ml-2 size-4" />
+          <Button asChild size="lg" className="w-full px-8 text-base sm:w-auto">
+            <a
+              href="https://my.feishu.cn/share/base/form/shrcnDKtWPa43T6FS869Nvb1k7x"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {"申请机构演示资格"}
+              <ArrowRight className="ml-2 size-4" />
+            </a>
           </Button>
         </div>
 

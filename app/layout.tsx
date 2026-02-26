@@ -15,7 +15,7 @@ const notoSansSC = Noto_Sans_SC({
 })
 
 export const metadata: Metadata = {
-  title: '未名逻辑 | AI 工业级批改基础设施',
+  title: '未名逻辑 | AI 教培基础设施专家',
   description: '2 秒完成一份作文工业级批改，让名师经验规模化复制。面向教培机构的 AI 批改与学情数据中台。',
   icons: {
     icon: '/icon.svg',
