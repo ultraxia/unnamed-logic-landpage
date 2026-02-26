@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 
@@ -18,8 +19,8 @@ export function Navbar() {
     <header className="fixed top-0 right-0 left-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
         <a href="#" className="flex items-center gap-2.5">
-          <div className="flex size-8 items-center justify-center rounded-lg bg-primary">
-            <span className="text-sm font-bold text-primary-foreground">W</span>
+          <div className="relative size-8 overflow-hidden rounded-lg border border-border bg-card">
+            <Image src="/logo.png" alt="未名逻辑 Logo" fill className="object-contain p-0.5" priority />
           </div>
           <div className="flex flex-col">
             <span className="text-sm font-semibold tracking-tight text-foreground">

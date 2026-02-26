@@ -18,7 +18,7 @@ export function HeroSection() {
           }`}
         >
           <Shield className="size-3.5 text-primary" />
-          {"500+ 班级真实运行 · 99.9% 可用性"}
+          {"100+ 班级真实运行 · 99.9% 可用性"}
         </div>
 
         {/* Heading */}

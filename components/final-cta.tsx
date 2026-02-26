@@ -37,28 +37,34 @@ export function FinalCta() {
               {"先试点再全面上线：用真实教学结果决定是否推进，不让团队承担试错成本。"}
             </p>
 
-            <div className="mb-7 grid gap-2 rounded-lg border border-border bg-background p-4 text-left">
-              <div className="flex items-start gap-2 text-sm text-foreground">
-                <ShieldCheck className="mt-0.5 size-4 text-primary" />
-                <span>{"14 天小范围试点，先在一个年级验证结果"}</span>
+            <div className="mb-7 grid gap-3 sm:grid-cols-3">
+              <div className="rounded-lg border border-border bg-background p-4 text-center">
+                <ShieldCheck className="mx-auto mb-2 size-4 text-primary" />
+                <p className="text-sm text-foreground">{"14 天小范围试点，先在一个年级验证结果"}</p>
               </div>
-              <div className="flex items-start gap-2 text-sm text-foreground">
-                <ShieldCheck className="mt-0.5 size-4 text-primary" />
-                <span>{"不达成预设目标可退出，不绑定长期合同"}</span>
+              <div className="rounded-lg border border-border bg-background p-4 text-center">
+                <ShieldCheck className="mx-auto mb-2 size-4 text-primary" />
+                <p className="text-sm text-foreground">{"不达成预设目标可退出，不绑定长期合同"}</p>
               </div>
-              <div className="flex items-start gap-2 text-sm text-foreground">
-                <ShieldCheck className="mt-0.5 size-4 text-primary" />
-                <span>{"配套上线顾问与教研同训，保障团队可落地"}</span>
+              <div className="rounded-lg border border-border bg-background p-4 text-center">
+                <ShieldCheck className="mx-auto mb-2 size-4 text-primary" />
+                <p className="text-sm text-foreground">{"配套上线顾问与教研同训，保障团队可落地"}</p>
               </div>
             </div>
 
             <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Button size="lg" className="w-full px-8 text-base sm:w-auto">
-                {"获取机构 ROI 测算"}
+              <Button asChild size="lg" variant="outline" className="w-full px-8 text-base sm:w-auto">
+                <a href="#roi">{"获取机构 ROI 测算"}</a>
               </Button>
-              <Button size="lg" variant="outline" className="w-full px-8 text-base sm:w-auto">
-                {"预约 30 分钟决策演示"}
-                <ArrowRight className="size-4" />
+              <Button asChild size="lg" className="w-full px-8 text-base sm:w-auto">
+                <a
+                  href="https://my.feishu.cn/share/base/form/shrcnDKtWPa43T6FS869Nvb1k7x"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {"预约试用"}
+                  <ArrowRight className="size-4" />
+                </a>
               </Button>
             </div>
 

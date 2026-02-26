@@ -2,6 +2,7 @@ import { Navbar } from "@/components/navbar"
 import { HeroSection } from "@/components/hero-section"
 import { PainPoints } from "@/components/pain-points"
 import { SolutionFlow } from "@/components/solution-flow"
+import { AmplifierSection } from "@/components/amplifier-section"
 import { RoiSection } from "@/components/roi-section"
 import { CustomerVoice } from "@/components/customer-voice"
 import { ValuePropositions } from "@/components/value-propositions"
@@ -25,26 +26,29 @@ export default function Page() {
       {/* 3. 解决方案流程 - 四步闭环替代旧流程 */}
       <SolutionFlow />
 
-      {/* 4. ROI 测算 - 先看回本与降本空间 */}
+      {/* 4. 放大器定位 - AI 执行机构自己的教学标准 */}
+      <AmplifierSection />
+
+      {/* 5. ROI 测算 - 先看回本与降本空间 */}
       <RoiSection />
 
-      {/* 5. 用户之声 - 真实案例与结果 */}
+      {/* 6. 用户之声 - 真实案例与结果 */}
       <CustomerVoice />
 
-      {/* 6. 核心能力 - 技术转化为商业结果 */}
+      {/* 7. 核心能力 - 技术转化为商业结果 */}
       <ValuePropositions />
 
-      {/* 7. 数据资产 - 企业后台风格 mockup */}
+      {/* 8. 数据资产 - 企业后台风格 mockup */}
       <DataAssetSection />
 
-      {/* 8. 架构师背书 - 降调信任区 */}
+      {/* 9. 架构师背书 - 降调信任区 */}
       <FounderSection />
-
-      {/* 9. FAQ */}
-      <FaqSection />
 
       {/* 10. 强稀缺 CTA */}
       <FinalCta />
+
+      {/* 11. FAQ */}
+      <FaqSection />
 
       <Footer />
     </main>

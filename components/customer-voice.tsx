@@ -24,9 +24,9 @@ const highlights = [
 
 const cases = [
   {
-    org: "华东语文连锁 A（12 校区）",
+    org: "华东语文连锁 A（5 校区）",
     period: "上线 6 周",
-    before: "月均约 4,800 篇作文，助教排班长期加班",
+    before: "月均约 4,800 篇作文，助教长期加班",
     after: "批改交付从 2-3 天缩短到当日完成，续费沟通以数据报告为主",
   },
   {
@@ -65,7 +65,7 @@ export function CustomerVoice() {
               {"“以前一篇作文精改常要 20 分钟，做一对一满分改写甚至接近 1 小时。现在批改+满分改写约 1 分钟完成；高峰期仍维持分钟级交付，课堂反馈节奏完全不同，家长对续费沟通的接受度明显提高。”"}
             </p>
             <footer className="mt-3 text-sm text-muted-foreground">
-              {"华东某 K12 机构 · 教研负责人"}
+              {"江苏某语文研学机构 · 创始人"}
             </footer>
           </blockquote>
 
