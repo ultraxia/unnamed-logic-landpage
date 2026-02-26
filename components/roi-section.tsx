@@ -206,7 +206,7 @@ export function RoiSection() {
               target="_blank"
               rel="noreferrer"
             >
-              {"预约 30 分钟决策演示"}
+              {"预约试用"}
               <ArrowRight className="size-4" />
             </a>
           </Button>
