@@ -2,6 +2,7 @@ import { Navbar } from "@/components/navbar"
 import { HeroSection } from "@/components/hero-section"
 import { PainPoints } from "@/components/pain-points"
 import { SolutionFlow } from "@/components/solution-flow"
+import { RoiSection } from "@/components/roi-section"
 import { CustomerVoice } from "@/components/customer-voice"
 import { ValuePropositions } from "@/components/value-propositions"
 import { DataAssetSection } from "@/components/data-asset-section"
@@ -24,22 +25,25 @@ export default function Page() {
       {/* 3. 解决方案流程 - 四步闭环替代旧流程 */}
       <SolutionFlow />
 
-      {/* 4. 用户之声 - 并发效率与成本改善 */}
+      {/* 4. ROI 测算 - 先看回本与降本空间 */}
+      <RoiSection />
+
+      {/* 5. 用户之声 - 真实案例与结果 */}
       <CustomerVoice />
 
-      {/* 5. 核心能力 - 技术转化为商业结果 */}
+      {/* 6. 核心能力 - 技术转化为商业结果 */}
       <ValuePropositions />
 
-      {/* 6. 数据资产 - 企业后台风格 mockup */}
+      {/* 7. 数据资产 - 企业后台风格 mockup */}
       <DataAssetSection />
 
-      {/* 7. 架构师背书 - 降调信任区 */}
+      {/* 8. 架构师背书 - 降调信任区 */}
       <FounderSection />
 
-      {/* 8. FAQ */}
+      {/* 9. FAQ */}
       <FaqSection />
 
-      {/* 9. 强稀缺 CTA */}
+      {/* 10. 强稀缺 CTA */}
       <FinalCta />
 
       <Footer />

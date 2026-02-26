@@ -9,8 +9,8 @@ export function Navbar() {
 
   const navLinks = [
     { label: "解决方案", href: "#solution" },
+    { label: "ROI 测算", href: "#roi" },
     { label: "核心能力", href: "#capabilities" },
-    { label: "数据资产", href: "#data-asset" },
     { label: "常见问题", href: "#faq" },
   ]
 
@@ -25,9 +25,7 @@ export function Navbar() {
             <span className="text-sm font-semibold tracking-tight text-foreground">
               {"未名逻辑"}
             </span>
-            <span className="text-[10px] leading-none text-muted-foreground">
-              Wei Ming Logic
-            </span>
+            <span className="text-[10px] leading-none text-muted-foreground">Unnamed Logic</span>
           </div>
         </a>
 
@@ -42,7 +40,7 @@ export function Navbar() {
             </a>
           ))}
           <Button size="sm" className="px-5">
-            {"申请演示"}
+            {"预约演示"}
           </Button>
         </div>
 
@@ -69,7 +67,7 @@ export function Navbar() {
               </a>
             ))}
             <Button size="sm" className="w-full">
-              {"申请演示"}
+              {"预约演示"}
             </Button>
           </div>
         </div>

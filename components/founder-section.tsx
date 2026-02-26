@@ -4,10 +4,10 @@ import { useRef } from "react"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 
 const credentials = [
-  "世界 500 强企业工程标准",
-  "GenAI 架构与 Schema 建模专家",
-  "工业级分布式系统设计经验",
-  "硅谷 AI 创业一线实战背景",
+  "创始团队来自世界 500 强 Lenovo 工程体系",
+  "具备工业级分布式系统架构与稳定性交付经验",
+  "参与新加坡 AI 公司 Novita.AI 早期创业实践",
+  "国内较早一批深度实践 GenAI 落地的团队",
 ]
 
 export function FounderSection() {
@@ -33,10 +33,10 @@ export function FounderSection() {
 
               <div className="flex-1">
                 <p className="mb-1 text-xs font-semibold uppercase tracking-widest text-primary">
-                  {"系统架构与教研逻辑设计者"}
+                  {"About Unnamed Logic"}
                 </p>
-                <h3 className="mb-1 text-xl font-bold text-foreground">Ultra Fu</h3>
-                <p className="mb-5 text-sm text-muted-foreground">{"未名逻辑 创始人 & 首席架构师"}</p>
+                <h3 className="mb-1 text-xl font-bold text-foreground">{"关于未名逻辑"}</h3>
+                <p className="mb-5 text-sm text-muted-foreground">{"企业级 AI 教培基础设施团队"}</p>
 
                 <div className="mb-6 grid gap-2 sm:grid-cols-2">
                   {credentials.map((c, i) => (
@@ -55,12 +55,22 @@ export function FounderSection() {
 
                 <div className="rounded-lg bg-secondary p-4">
                   <p className="text-sm leading-relaxed text-secondary-foreground">
-                    {"系统底层架构经过严格的工程验证，确保每一次批改输出都符合机构教研标准。选择未名逻辑，意味着选择了经过世界级工程实践检验的技术合作伙伴。"}
+                    {
+                      "未名逻辑认为，AI 对传统教学交付的重构已经开始，差异不在于“要不要用 AI”，而在于“何时完成可运营的 AI 升级”。我们把世界级工程方法、分布式系统能力与教研场景深度结合，帮助机构把 AI 从演示能力变成可规模化、可持续复用的业务能力。"
+                    }
+                  </p>
+                </div>
+
+                <div className="mt-4 rounded-lg border border-primary/20 bg-primary/5 p-4">
+                  <p className="text-sm leading-relaxed text-foreground">
+                    {
+                      "窗口期正在快速收窄：先完成 AI 升级的机构，会先建立交付效率、家长感知和数据资产优势；观望越久，后续的组织改造与获客成本越高。"
+                    }
                   </p>
                 </div>
 
                 <div className="mt-5 flex flex-wrap gap-4">
-                  {["Lenovo", "novita.ai", "Silicon Valley"].map((name) => (
+                  {["Lenovo", "Novita.AI", "GenAI", "Distributed Systems"].map((name) => (
                     <span key={name} className="text-xs tracking-wider text-muted-foreground/50">
                       {name}
                     </span>
