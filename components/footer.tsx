@@ -9,7 +9,7 @@ export function Footer() {
             <Image src="/logo.png" alt="未名逻辑 Logo" fill className="object-contain p-0.5" />
           </div>
           <span className="text-sm text-muted-foreground">
-            {"© 2026 未名逻辑 | AI 教培基础设施专家"}
+            {"© 2026 未名逻辑｜一站式 AI 教学与运营平台"}
           </span>
         </div>
       </div>
