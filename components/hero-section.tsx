@@ -6,10 +6,23 @@ import { ArrowRight, Shield } from "lucide-react"
 
 export function HeroSection() {
   const [mounted, setMounted] = useState(false)
+  const [activeWord, setActiveWord] = useState(0)
+
   useEffect(() => { setMounted(true) }, [])
+
+  useEffect(() => {
+    if (!mounted) return
+
+    const ticker = window.setInterval(() => {
+      setActiveWord((prev) => (prev + 1) % rotatingWords.length)
+    }, 2600)
+
+    return () => window.clearInterval(ticker)
+  }, [mounted])
 
   return (
     <section className="relative flex min-h-[92svh] items-center justify-center overflow-hidden px-6 pt-20">
+      <div className="hero-ambient" aria-hidden />
       <div className="relative z-10 mx-auto max-w-4xl text-center">
         {/* Badge */}
         <div
@@ -29,7 +42,14 @@ export function HeroSection() {
         >
           {"班级平均等待约 2s / 篇"}
           <br />
-          <span className="text-primary">{"批改 + 满分改写"}</span>
+          <span className="inline-flex min-h-12 items-center justify-center text-primary sm:min-h-14">
+            <span
+              key={rotatingWords[activeWord]}
+              className="inline-block animate-word-fade"
+            >
+              {rotatingWords[activeWord]}
+            </span>
+          </span>
         </h1>
 
         {/* Sub heading */}
@@ -48,12 +68,22 @@ export function HeroSection() {
           }`}
         >
           {[
-            { value: "2s", label: "30 人班级平均 / 篇" },
-            { value: "1 min", label: "单篇批改+改写" },
-            { value: "100 篇", label: "并发分钟级交付" },
+            { value: 2, suffix: "s", label: "30 人班级平均 / 篇", decimals: 0 },
+            { value: 1, suffix: " min", label: "单篇批改+改写", decimals: 0 },
+            { value: 500, suffix: " 篇", label: "并发分钟级交付", decimals: 0, plus: true },
           ].map((stat, i) => (
             <div key={i} className="flex flex-col items-center">
-              <span className="text-2xl font-bold text-foreground sm:text-3xl">{stat.value}</span>
+              <span className="text-2xl font-bold text-foreground sm:text-3xl">
+                <CountUpNumber
+                  end={stat.value}
+                  delay={350 + i * 200}
+                  duration={2000}
+                  decimals={stat.decimals}
+                  suffix={stat.suffix}
+                  showPlus={stat.plus}
+                  start={mounted}
+                />
+              </span>
               <span className="mt-0.5 text-xs text-muted-foreground">{stat.label}</span>
             </div>
           ))}
@@ -95,6 +125,72 @@ export function HeroSection() {
         </div>
       </div>
     </section>
+  )
+}
+
+const rotatingWords = ["批改 + 满分改写", "批改 + 诊断报告", "批改 + 提分闭环"] as const
+
+function CountUpNumber({
+  end,
+  delay,
+  duration,
+  decimals,
+  suffix,
+  showPlus,
+  start,
+}: {
+  end: number
+  delay: number
+  duration: number
+  decimals: number
+  suffix: string
+  showPlus?: boolean
+  start: boolean
+}) {
+  const [value, setValue] = useState(0)
+
+  useEffect(() => {
+    if (!start) return
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    let frameId = 0
+    let timeoutId = 0
+    let animationStart = 0
+
+    timeoutId = window.setTimeout(() => {
+      if (prefersReducedMotion) {
+        setValue(end)
+        return
+      }
+
+      const tick = (timestamp: number) => {
+        if (!animationStart) animationStart = timestamp
+        const elapsed = timestamp - animationStart
+        const progress = Math.min(elapsed / duration, 1)
+        const eased = 1 - Math.pow(1 - progress, 3)
+        setValue(end * eased)
+
+        if (progress < 1) {
+          frameId = window.requestAnimationFrame(tick)
+        }
+      }
+
+      frameId = window.requestAnimationFrame(tick)
+    }, delay)
+
+    return () => {
+      window.clearTimeout(timeoutId)
+      window.cancelAnimationFrame(frameId)
+    }
+  }, [delay, duration, end, start])
+
+  const formatted = value.toFixed(decimals)
+  return (
+    <>
+      {formatted}
+      {showPlus ? "+" : ""}
+      {suffix}
+    </>
   )
 }
 
