@@ -52,15 +52,6 @@ export function HeroSection() {
           </span>
         </h1>
 
-        {/* Sub heading */}
-        <p
-          className={`mx-auto mt-6 max-w-xl text-pretty text-sm leading-relaxed text-muted-foreground transition-all duration-700 delay-200 sm:text-base md:text-lg ${
-            mounted ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-          }`}
-        >
-          {"单篇完整批改+改写约 1 分钟；按 30 人同批提交测算，班级平均等待约 2 秒 / 篇。"}
-        </p>
-
         {/* Key metrics */}
         <div
           className={`mx-auto mt-10 flex max-w-md flex-wrap items-center justify-center gap-8 transition-all duration-700 delay-300 sm:gap-12 ${
@@ -106,14 +97,6 @@ export function HeroSection() {
             </a>
           </Button>
         </div>
-
-        <p
-          className={`mt-3 text-xs text-muted-foreground transition-all duration-700 delay-500 ${
-            mounted ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-          }`}
-        >
-          {"* 2s 为平均口径：按 30 篇同批提交、总耗时约 60s 折算；实际受网络、字数和并发负载影响。"}
-        </p>
 
         {/* AI grading report - healing line-by-line animation */}
         <div
