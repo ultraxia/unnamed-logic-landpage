@@ -20,13 +20,13 @@ export function Navbar() {
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
         <a href="#" className="flex items-center gap-2.5">
           <div className="relative size-8 overflow-hidden rounded-lg border border-border bg-card">
-            <Image src="/logo.png" alt="未名逻辑 Logo" fill className="object-contain p-0.5" priority />
+            <Image src="/logo.png" alt="原点智能 Logo" fill className="object-contain p-0.5" priority />
           </div>
           <div className="flex flex-col">
             <span className="text-sm font-semibold tracking-tight text-foreground">
-              {"未名逻辑"}
+              {"原点智能"}
             </span>
-            <span className="text-[10px] leading-none text-muted-foreground">Unnamed Logic</span>
+            <span className="text-[10px] leading-none text-muted-foreground">Origin AI</span>
           </div>
         </a>
 

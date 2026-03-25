@@ -28,17 +28,17 @@ export function FounderSection() {
               {/* Avatar */}
               <div className="flex-shrink-0">
                 <div className="relative size-16 overflow-hidden rounded-xl border border-border bg-card md:size-20">
-                  <Image src={logoImage} alt="未名逻辑 Logo" fill className="object-contain p-1.5 md:p-2" />
+                  <Image src={logoImage} alt="原点智能 Logo" fill className="object-contain p-1.5 md:p-2" />
                 </div>
               </div>
 
               <div className="flex-1">
                 <p className="mb-1 text-xs font-semibold uppercase tracking-widest text-primary">
-                  {"About Unnamed Logic"}
+                  {"About Origin AI"}
                 </p>
                 <h3 className="mb-1 text-xl font-bold text-foreground">
                   {"关于"}
-                  <span className="ml-1 text-primary">{"未名逻辑"}</span>
+                  <span className="ml-1 text-primary">{"原点智能"}</span>
                 </h3>
                 <p className="mb-5 text-sm text-muted-foreground">{"教培机构 AI 运营系统专家"}</p>
 
@@ -59,7 +59,7 @@ export function FounderSection() {
 
                 <div className="rounded-lg border border-border bg-secondary/40 p-5">
                   <p className="text-lg leading-relaxed text-foreground">
-                    <span className="font-semibold text-primary">{"未名逻辑"}</span>{" "}
+                    <span className="font-semibold text-primary">{"原点智能"}</span>{" "}
                     {
                       "认为，教培机构的竞争已经进入运营效率时代。差异不在于有没有 AI，而在于 AI 是否真正跑通了招生、教学、财务的全流程。我们把世界级工程方法与机构运营场景深度结合，帮助机构把 AI 从演示能力变成每天在用的运营系统。"
                     }
