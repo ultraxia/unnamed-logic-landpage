@@ -61,7 +61,7 @@ export function FounderSection() {
                   <p className="text-lg leading-relaxed text-foreground">
                     <span className="font-semibold text-primary">{"原点智能"}</span>{" "}
                     {
-                      "认为，教培机构的竞争已经进入运营效率时代。差异不在于有没有 AI，而在于 AI 是否真正跑通了招生、教学、财务的全流程。我们把世界级工程方法与机构运营场景深度结合，帮助机构把 AI 从演示能力变成每天在用的运营系统。"
+                      "教培机构的下一个效率红利，在运营数字化、智能化。我们将世界级 AI 工程能力深度嵌入招生、教学、财务、运营四个核心场景，让机构从经验驱动走向数据智能驱动。"
                     }
                   </p>
                 </div>
