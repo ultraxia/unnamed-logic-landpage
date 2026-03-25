@@ -43,7 +43,7 @@ export function CustomerVoice() {
 
           <blockquote className="border-l-2 border-primary pl-4 sm:pl-5">
             <p className="text-base leading-relaxed text-foreground sm:text-lg">
-              {"以前招生靠咨询师记性，财务靠微信截图，续费靠老关系。现在系统把这三件事全接住了——商机有记录、账务有流水、续费有数据。校长终于能看清楚每个月到底赚了多少、从哪赚的。"}
+              {"以前招生靠咨询师记性，财务靠微信截图，续费靠感情维系。现在系统把这三件事全接住了——商机有记录、账务有流水、续费有数据。校长终于能看清楚每个月到底赚了多少、从哪赚的。"}
             </p>
             <footer className="mt-3 text-sm text-muted-foreground">
               {"江苏某 K12 辅导机构 · 校长"}

@@ -27,7 +27,7 @@ const steps = [
     icon: BarChart3,
     step: "03",
     title: "教学管理",
-    description: "排课、点名、AI 作文批改一体化，学情数据自动沉淀，老师从重复劳动中解放。",
+    description: "排课、点名、AI 作文批改一体化，学情数据自动沉淀，教学质量不再依赖某一位老师在场。",
     color: "text-primary",
     bg: "bg-primary/10",
     line: "bg-primary/30",

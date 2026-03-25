@@ -61,7 +61,7 @@ export function HeroSection() {
           {[
             { value: 2, suffix: "s", label: "AI 批改单篇", decimals: 0, plus: false },
             { value: 100, suffix: "%", label: "审批流程线上化", decimals: 0, plus: false },
-            { value: 0, suffix: " 条", label: "漏跟进商机", decimals: 0, plus: false },
+            { value: 100, suffix: "%", label: "商机跟进及时率", decimals: 0, plus: false },
           ].map((stat, i) => (
             <div key={i} className="flex flex-col items-center">
               <span className="text-2xl font-bold text-foreground sm:text-3xl">

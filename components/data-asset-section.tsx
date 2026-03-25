@@ -37,7 +37,7 @@ export function DataAssetSection() {
             <div className="mb-4 flex items-center justify-between">
               <h4 className="text-sm font-semibold text-foreground">{"AI 催单助攻"}</h4>
               <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary">
-                {"实时生成"}
+                {"AI 话术"}
               </span>
             </div>
             <AiScriptMockup show={isVisible} />
