@@ -1,24 +1,24 @@
 "use client"
 
 import { useRef } from "react"
-import { Fingerprint, GraduationCap, Sparkles } from "lucide-react"
+import { Fingerprint, TrendingUp, Sparkles } from "lucide-react"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 
 const points = [
   {
     icon: Fingerprint,
-    title: "先学你的标准，再批每一篇",
-    description: "先对齐机构评分口径、评语边界和改写风格，再输出结果。AI 执行的是你的方法论，不是通用模板。",
+    title: "先固化 SOP，再规模化执行",
+    description: "把机构最佳实践——批改标准、跟进节奏、续费话术——沉淀到系统里，AI 执行你的 SOP，不是通用模板。",
   },
   {
-    icon: GraduationCap,
-    title: "放大名师经验，不依赖名师在场",
-    description: "优秀教师的批改逻辑可以被沉淀并复制到全校区，减少“同题不同判”的体验波动。",
+    icon: TrendingUp,
+    title: "每个角色都有专属放大器",
+    description: "咨询师有商机跟进提醒和 AI 话术，财务有审批流水线，老师有 AI 批改，校长有全局数据看板。每个人的效率都被放大。",
   },
   {
     icon: Sparkles,
-    title: "统一质量，释放老师时间",
-    description: "把老师从重复劳动中释放出来，聚焦讲评、答疑和提分策略，让教学价值出现在最关键的环节。",
+    title: "机构越用越聪明",
+    description: "招生数据、课销数据、学情数据持续沉淀。系统掌握的机构运营规律越来越深，每一次决策都比上次更准。",
   },
 ]
 
@@ -34,12 +34,12 @@ export function AmplifierSection() {
             isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}
         >
-          <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-primary">Teaching DNA</p>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-primary">Operating System</p>
           <h2 className="text-balance text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl">
-            {"AI 不是模板机，而是机构教学能力放大器"}
+            {"不是工具，是机构的 AI 运营 OS"}
           </h2>
           <p className="mx-auto mt-3 max-w-3xl text-sm text-muted-foreground sm:text-base">
-            {"真正的差异，不在“有没有 AI”，而在“AI 是否执行你自己的教学标准”。先固化机构方法，再规模化交付。"}
+            {"真正的差异，不在有没有 AI，而在 AI 是否在执行你自己的业务逻辑。先固化机构方法，再规模化交付。"}
           </p>
         </div>
 
