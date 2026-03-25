@@ -19,6 +19,13 @@ const primary = [
     description:
       "商机录入、试听安排、AI 话术辅助一体化。系统自动提醒逾期跟进，转化率从经验数字变成可追踪指标。",
   },
+  {
+    icon: BarChart3,
+    tag: "续费预警引擎",
+    title: "提前 30 天知道谁要流失",
+    description:
+      "综合课时、出勤、学情自动评分，高风险学员提前标红。介入时机不再靠感觉，续费率变成可量化、可干预的指标。",
+  },
 ]
 
 const secondary = [
@@ -27,12 +34,6 @@ const secondary = [
     tag: "财务审批闭环",
     title: "收款退费全程线上",
     description: "报名、退费全走审批流，账务自动归档，月底对账一键导出。",
-  },
-  {
-    icon: BarChart3,
-    tag: "续费预警引擎",
-    title: "提前 30 天知道谁要流失",
-    description: "综合课时、出勤、学情自动评分，高风险学员提前标红。",
   },
   {
     icon: Shield,
@@ -68,8 +69,8 @@ export function ValuePropositions() {
           </h2>
         </div>
 
-        {/* 主要能力：两列大卡片 */}
-        <div className="mb-4 grid gap-4 sm:grid-cols-2">
+        {/* 主要能力：三列大卡片 */}
+        <div className="mb-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {primary.map((cap, i) => {
             const Icon = cap.icon
             return (
