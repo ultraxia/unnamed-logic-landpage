@@ -59,7 +59,7 @@ export function HeroSection() {
           }`}
         >
           {[
-            { value: 2, suffix: "s", label: "AI 批改单篇", decimals: 0, plus: false },
+            { value: 10, suffix: "s", label: "AI 批改单篇作文", decimals: 0, plus: false },
             { value: 100, suffix: "%", label: "审批流程线上化", decimals: 0, plus: false },
             { value: 100, suffix: "%", label: "商机跟进及时率", decimals: 0, plus: false },
           ].map((stat, i) => (
@@ -179,10 +179,10 @@ function CountUpNumber({
 
 function TodoDashboardPreview({ show }: { show: boolean }) {
   const todoItems = [
-    { label: "待审批报名", count: "3 条", color: "text-orange-500", bgColor: "bg-orange-500/10", delay: 900, urgent: true },
-    { label: "待审批退费", count: "1 条", color: "text-red-500", bgColor: "bg-red-500/10", delay: 1100, urgent: false },
-    { label: "今日课节", count: "4 节", color: "text-primary", bgColor: "bg-primary/10", delay: 1300, urgent: false },
-    { label: "待填试听反馈", count: "2 条", color: "text-chart-3", bgColor: "bg-chart-3/10", delay: 1500, urgent: false },
+    { label: "待跟进商机", count: "12 条", color: "text-orange-500", bgColor: "bg-orange-500/10", delay: 900, urgent: true },
+    { label: "待审批报名", count: "5 条", color: "text-red-500", bgColor: "bg-red-500/10", delay: 1100, urgent: true },
+    { label: "流失预警学员", count: "8 人", color: "text-destructive", bgColor: "bg-destructive/10", delay: 1300, urgent: false },
+    { label: "待审批退费", count: "2 条", color: "text-chart-3", bgColor: "bg-chart-3/10", delay: 1500, urgent: false },
   ]
 
   return (
@@ -193,7 +193,7 @@ function TodoDashboardPreview({ show }: { show: boolean }) {
           <div className="size-2 rounded-full bg-primary" />
           <span className="text-xs font-medium text-foreground">{"今日待办"}</span>
         </div>
-        <span className="text-[11px] text-muted-foreground">{"王老师 · 财务"}</span>
+        <span className="text-[11px] text-muted-foreground">{"张校长 · 管理员"}</span>
       </div>
 
       {/* Todo items with staggered reveal */}
