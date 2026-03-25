@@ -34,8 +34,8 @@ export function AmplifierSection() {
             isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}
         >
-          <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-primary">Operating System</p>
-          <h2 className="text-balance text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl">
+          <p className="section-label mb-2 text-xs font-semibold uppercase tracking-widest">Operating System</p>
+          <h2 className="section-title text-balance text-2xl font-bold text-foreground sm:text-3xl md:text-4xl lg:text-5xl">
             {"不只是工具。是你的运营 OS。"}
           </h2>
           <p className="mx-auto mt-3 max-w-3xl text-sm text-muted-foreground sm:text-base">

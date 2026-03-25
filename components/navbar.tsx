@@ -16,7 +16,7 @@ export function Navbar() {
   ]
 
   return (
-    <header className="fixed top-0 right-0 left-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
+    <header className="fixed top-0 right-0 left-0 z-50 navbar-glass">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
         <a href="#" className="flex items-center gap-2.5">
           <div className="relative size-8 overflow-hidden rounded-lg border border-border bg-card">

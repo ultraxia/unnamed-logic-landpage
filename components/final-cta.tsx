@@ -17,7 +17,7 @@ export function FinalCta() {
             isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}
         >
-          <div className="relative overflow-hidden rounded-xl border border-primary/20 bg-card p-8 text-center shadow-sm sm:p-12">
+          <div className="relative overflow-hidden rounded-2xl glass-card p-8 text-center sm:p-12">
             <div className="absolute top-0 right-0 rounded-bl-lg bg-primary px-3 py-1">
               <span className="text-[11px] font-semibold text-primary-foreground">{"限额开放"}</span>
             </div>

@@ -48,8 +48,8 @@ export function FaqSection() {
             isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}
         >
-          <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-primary">FAQ</p>
-          <h2 className="text-balance text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl">
+          <p className="section-label mb-2 text-xs font-semibold uppercase tracking-widest">FAQ</p>
+          <h2 className="section-title text-balance text-2xl font-bold text-foreground sm:text-3xl md:text-4xl lg:text-5xl">
             {"常见问题"}
           </h2>
         </div>

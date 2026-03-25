@@ -31,10 +31,10 @@ export function PainPoints() {
             isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}
         >
-          <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+          <p className="section-label mb-2 text-xs font-semibold uppercase tracking-widest">
             Pain Points
           </p>
-          <h2 className="text-balance text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl">
+          <h2 className="section-title text-balance text-2xl font-bold text-foreground sm:text-3xl md:text-4xl lg:text-5xl">
             {"规模越大，问题越贵。"}
           </h2>
         </div>

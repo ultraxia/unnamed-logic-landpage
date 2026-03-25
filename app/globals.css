@@ -217,3 +217,66 @@ html {
     animation: none !important;
   }
 }
+
+/* ── 全站 Apple 风格扩展 ── */
+
+/* Section 小标签渐变 */
+.section-label {
+  background: linear-gradient(135deg, var(--primary) 0%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Section 大标题增强 */
+.section-title {
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+}
+
+/* 全站毛玻璃卡片 */
+.glass-card {
+  background: color-mix(in srgb, var(--card) 85%, transparent);
+  border: 1px solid color-mix(in srgb, white 12%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, white 6%, transparent),
+    0 8px 32px -8px rgba(0,0,0,0.12),
+    inset 0 1px 0 color-mix(in srgb, white 10%, transparent);
+}
+
+/* 全站 CTA 发光按钮 */
+.glow-btn {
+  background: linear-gradient(135deg, var(--primary), color-mix(in srgb, var(--primary) 70%, #a78bfa));
+  box-shadow: 0 0 20px color-mix(in srgb, var(--primary) 35%, transparent);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+.glow-btn:hover {
+  box-shadow: 0 0 32px color-mix(in srgb, var(--primary) 50%, transparent);
+  transform: translateY(-1px);
+}
+
+/* Navbar 增强毛玻璃 */
+.navbar-glass {
+  background: color-mix(in srgb, var(--background) 75%, transparent) !important;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid color-mix(in srgb, white 8%, transparent) !important;
+}
+
+/* 渐变分割线 */
+.gradient-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--primary) 30%, transparent), transparent);
+}
+
+/* 卡片 hover 发光 */
+.card-glow {
+  transition: box-shadow 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+}
+.card-glow:hover {
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--primary) 30%, transparent),
+              0 8px 32px -4px color-mix(in srgb, var(--primary) 15%, transparent);
+  transform: translateY(-2px);
+}
