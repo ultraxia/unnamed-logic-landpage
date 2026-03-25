@@ -8,7 +8,7 @@ import logoImage from "@/image.png"
 const credentials = [
   "创始团队来自世界 500 强企业 AI 研发团队",
   "具备工业级分布式系统架构与稳定性交付经验",
-  "国内最早将 GenAI 应用于教学场景的团队之一",
+  "国内最早将 AI 应用于教培机构运营管理的团队之一",
 ]
 
 export function FounderSection() {
@@ -40,7 +40,7 @@ export function FounderSection() {
                   {"关于"}
                   <span className="ml-1 text-primary">{"未名逻辑"}</span>
                 </h3>
-                <p className="mb-5 text-sm text-muted-foreground">{"AI 教培基础设施专家"}</p>
+                <p className="mb-5 text-sm text-muted-foreground">{"教培机构 AI 运营系统专家"}</p>
 
                 <div className="mb-6 grid gap-2 sm:grid-cols-2">
                   {credentials.map((c, i) => (
@@ -61,7 +61,7 @@ export function FounderSection() {
                   <p className="text-lg leading-relaxed text-foreground">
                     <span className="font-semibold text-primary">{"未名逻辑"}</span>{" "}
                     {
-                      "认为，AI 对传统教学交付的重构已经开始，差异不在于“要不要用 AI”，而在于“何时完成可运营的 AI 升级”。我们把世界级工程方法、分布式系统能力与教研场景深度结合，帮助机构把 AI 从演示能力变成可规模化、可持续复用的业务能力。"
+                      "认为,教培机构的竞争已经进入运营效率时代。差异不在于有没有 AI,而在于 AI 是否真正跑通了招生、教学、财务的全流程。我们把世界级工程方法与机构运营场景深度结合,帮助机构把 AI 从演示能力变成每天在用的运营系统。"
                     }
                   </p>
                 </div>
@@ -70,7 +70,7 @@ export function FounderSection() {
                   <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-primary/90">Window</p>
                   <p className="text-sm leading-relaxed text-foreground">
                     {
-                      "窗口期正在快速收窄：先完成 AI 升级的机构，会先建立交付效率、家长感知和数据资产优势；观望越久，后续的组织改造与获客成本越高。"
+                      "窗口期正在快速收窄：先完成 AI 运营升级的机构，会先建立招生转化、续费留存和财务效率的复合优势。观望越久，后发追赶成本越高。"
                     }
                   </p>
                 </div>

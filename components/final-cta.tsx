@@ -33,23 +33,21 @@ export function FinalCta() {
               {"本季度仅开放 3 家机构深度共建"}
             </h2>
 
-            <p className="mx-auto mb-6 max-w-xl text-sm text-muted-foreground">
-              {"先试点再全面上线：用真实教学结果决定是否推进，不让团队承担试错成本。"}
+            <p className="mx-auto mb-8 max-w-xl text-sm text-muted-foreground">
+              {"先试点再全面上线：2 周完成系统部署与团队培训，用真实运营结果决定是否推进。"}
             </p>
 
-            <div className="mb-7 grid gap-3 sm:grid-cols-3">
-              <div className="rounded-lg border border-border bg-background p-4 text-center">
-                <ShieldCheck className="mx-auto mb-2 size-4 text-primary" />
-                <p className="text-sm text-foreground">{"14 天小范围试点，先在一个年级验证结果"}</p>
-              </div>
-              <div className="rounded-lg border border-border bg-background p-4 text-center">
-                <ShieldCheck className="mx-auto mb-2 size-4 text-primary" />
-                <p className="text-sm text-foreground">{"不达成预设目标可退出，不绑定长期合同"}</p>
-              </div>
-              <div className="rounded-lg border border-border bg-background p-4 text-center">
-                <ShieldCheck className="mx-auto mb-2 size-4 text-primary" />
-                <p className="text-sm text-foreground">{"配套上线顾问与教研同训，保障团队可落地"}</p>
-              </div>
+            <div className="mb-8 inline-flex flex-col gap-3 text-left">
+              {[
+                "2 周完成系统部署，团队当天可上手操作",
+                "不达成预设目标可退出，不绑定长期合同",
+                "专人对接上线全程，招生/财务/教学角色分别培训",
+              ].map((text, i) => (
+                <div key={i} className="flex items-center gap-3">
+                  <ShieldCheck className="size-4 shrink-0 text-primary" />
+                  <p className="text-sm text-foreground">{text}</p>
+                </div>
+              ))}
             </div>
 
             <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">

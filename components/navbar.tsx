@@ -9,9 +9,9 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
 
   const navLinks = [
-    { label: "解决方案", href: "#solution" },
+    { label: "产品功能", href: "#solution" },
     { label: "ROI 测算", href: "#roi" },
-    { label: "核心能力", href: "#capabilities" },
+    { label: "客户案例", href: "#capabilities" },
     { label: "常见问题", href: "#faq" },
   ]
 
@@ -40,8 +40,10 @@ export function Navbar() {
               {link.label}
             </a>
           ))}
-          <Button size="sm" className="px-5">
-            {"预约演示"}
+          <Button size="sm" className="px-5" asChild>
+            <a href="https://my.feishu.cn/share/base/form/shrcnDKtWPa43T6FS869Nvb1k7x" target="_blank" rel="noreferrer">
+              {"预约演示"}
+            </a>
           </Button>
         </div>
 
@@ -67,8 +69,10 @@ export function Navbar() {
                 {link.label}
               </a>
             ))}
-            <Button size="sm" className="w-full">
-              {"预约演示"}
+            <Button size="sm" className="w-full" asChild>
+              <a href="https://my.feishu.cn/share/base/form/shrcnDKtWPa43T6FS869Nvb1k7x" target="_blank" rel="noreferrer">
+                {"预约演示"}
+              </a>
             </Button>
           </div>
         </div>
