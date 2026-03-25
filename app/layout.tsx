@@ -37,7 +37,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN">
-      <body className={`${inter.variable} ${notoSansSC.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} ${notoSansSC.variable} font-sans antialiased overflow-x-hidden`}>
         {children}
         <Analytics />
       </body>

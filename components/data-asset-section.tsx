@@ -26,7 +26,7 @@ export function DataAssetSection() {
           </p>
         </div>
 
-        <div className="grid gap-5 md:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-3 overflow-hidden">
           {/* AI 催单助攻 */}
           <div
             className={`rounded-xl border border-border bg-card p-5 transition-all duration-700 ${
