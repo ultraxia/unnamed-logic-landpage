@@ -39,9 +39,9 @@ export function FinalCta() {
 
             <div className="mb-8 inline-flex flex-col gap-3 text-left">
               {[
-                "2 周完成系统部署，团队当天可上手操作",
-                "不达成预设目标可退出，不绑定长期合同",
-                "专人对接上线全程，招生/财务/教学角色分别培训",
+                "两周完成部署，当天可以开始用",
+                "目标没达到，随时可以走，不绑长期合同",
+                "专人对接全程，每个角色单独培训，不是甩给你一份手册",
               ].map((text, i) => (
                 <div key={i} className="flex items-center gap-3">
                   <ShieldCheck className="size-4 shrink-0 text-primary" />

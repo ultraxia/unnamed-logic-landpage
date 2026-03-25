@@ -22,7 +22,7 @@ export function DataAssetSection() {
             {"问题发生前，AI 已经介入。"}
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground sm:text-base">
-            {"实时分析招生漏斗与学员状态，关键时机自动介入。"}
+            {"实时扫描每一个商机、每一位学员，在最关键的时机触发行动。"}
           </p>
         </div>
 
@@ -42,7 +42,7 @@ export function DataAssetSection() {
             </div>
             <AiScriptMockup show={isVisible} />
             <p className="mt-3 text-xs text-muted-foreground">
-              {"基于出勤、得分、薄弱项等真实数据生成话术，家长听到的是孩子的具体情况，不是套话。"}
+              {"出勤率、得分趋势、薄弱项，AI 全部读懂，给你一句家长真正想听的话。"}
             </p>
           </div>
 
@@ -61,7 +61,7 @@ export function DataAssetSection() {
             </div>
             <ChurnRadarMockup show={isVisible} />
             <p className="mt-3 text-xs text-muted-foreground">
-              {"综合课时消耗、出勤率、互动频率自动评分，高风险学员提前标红预警。"}
+              {"课时、出勤、互动综合建模，高风险学员提前 30 天标红，让你永远不是最后一个知道的人。"}
             </p>
           </div>
 
@@ -78,7 +78,7 @@ export function DataAssetSection() {
             </div>
             <ProgressChart show={isVisible} />
             <p className="mt-3 text-xs text-muted-foreground">
-              {"自动追踪学生各维度得分变化，续费面谈时用数据说话，胜过一切话术。"}
+              {"8 维学情自动追踪，续费面谈带着数据去，不用说服家长，数据会说话。"}
             </p>
           </div>
         </div>
