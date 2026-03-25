@@ -98,24 +98,34 @@ export function ValuePropositions() {
           })}
         </div>
 
-        {/* 次要能力：四列小卡片，无背景，只有左边框 */}
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {/* 次要能力：横向 tag 行，hover 展开描述 */}
+        <div className="flex flex-wrap gap-3">
           {secondary.map((cap, i) => {
             const Icon = cap.icon
             return (
               <div
                 key={i}
-                className={`group flex flex-col gap-3 border-l-2 border-border pl-4 py-2 transition-all duration-700 hover:border-primary ${
+                className={`group relative cursor-default transition-all duration-700 ${
                   isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
                 }`}
-                style={{ transitionDelay: `${440 + i * 100}ms` }}
+                style={{ transitionDelay: `${440 + i * 80}ms` }}
               >
-                <div className="flex items-center gap-2">
-                  <Icon className="size-4 text-primary shrink-0" />
-                  <span className="text-[11px] font-semibold text-muted-foreground">{cap.tag}</span>
+                {/* Tag 默认态 */}
+                <div className="flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 transition-all duration-300 group-hover:border-primary/40 group-hover:bg-primary/5">
+                  <Icon className="size-3.5 text-muted-foreground transition-colors group-hover:text-primary" />
+                  <span className="text-sm font-medium text-muted-foreground transition-colors group-hover:text-foreground whitespace-nowrap">
+                    {cap.title}
+                  </span>
                 </div>
-                <h3 className="text-sm font-semibold text-foreground leading-snug">{cap.title}</h3>
-                <p className="text-xs leading-relaxed text-muted-foreground">{cap.description}</p>
+
+                {/* Hover 展开浮层 */}
+                <div className="pointer-events-none absolute bottom-full left-0 mb-2 w-56 rounded-xl border border-border bg-card p-4 shadow-lg opacity-0 translate-y-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-y-0 z-10">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Icon className="size-4 text-primary shrink-0" />
+                    <span className="text-[11px] font-semibold text-primary">{cap.tag}</span>
+                  </div>
+                  <p className="text-xs leading-relaxed text-muted-foreground">{cap.description}</p>
+                </div>
               </div>
             )
           })}
