@@ -196,8 +196,9 @@ export function RoiSection() {
               ¥{fmt(calculated.totalAnnualGain)}
             </p>
             <p className="mt-2 text-sm text-muted-foreground">
-              对比系统年度成本约 ¥{fmt(calculated.systemAnnualCost)}，投资回报约{" "}
+              投资回报约{" "}
               <span className="font-bold text-emerald-600">{calculated.roiMultiple}x</span>
+              ，系统年费以实际规模单独报价
             </p>
           </div>
 
