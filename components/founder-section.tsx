@@ -61,7 +61,7 @@ export function FounderSection() {
                   <p className="text-lg leading-relaxed text-foreground">
                     <span className="font-semibold text-primary">{"原点智能"}</span>{" "}
                     {
-                      "教培机构的下一个效率红利，在运营数字化、智能化。我们将世界级 AI 工程能力深度嵌入招生、教学、财务、运营四个核心场景，让机构从经验驱动走向数据智能驱动。"
+                      "认为，教培机构的下一个效率红利，在运营数字化、智能化。我们将世界级 AI 工程能力深度嵌入招生、教学、财务、运营四个核心场景，让机构从经验驱动走向数据智能驱动。"
                     }
                   </p>
                 </div>
