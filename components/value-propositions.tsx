@@ -4,7 +4,7 @@ import { useRef } from "react"
 import { Shield, FileCheck, Zap, BarChart3, Users, CreditCard } from "lucide-react"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 
-const capabilities = [
+const primary = [
   {
     icon: Zap,
     tag: "AI 作文批改",
@@ -19,33 +19,32 @@ const capabilities = [
     description:
       "商机录入、试听安排、AI 话术辅助一体化。系统自动提醒逾期跟进，转化率从经验数字变成可追踪指标。",
   },
+]
+
+const secondary = [
   {
     icon: CreditCard,
     tag: "财务审批闭环",
-    title: "收款退费全程线上，账务零漏洞",
-    description:
-      "报名由咨询师提交、财务审批后生效；退费同样走审批流。所有流水自动归档，月底对账一键导出。",
+    title: "收款退费全程线上",
+    description: "报名、退费全走审批流，账务自动归档，月底对账一键导出。",
   },
   {
     icon: BarChart3,
     tag: "续费预警引擎",
     title: "提前 30 天知道谁要流失",
-    description:
-      "系统自动识别课时消耗进度、出勤率、学情趋势，提前预警高流失风险学员，让续费从被动应对变为主动出击。",
+    description: "综合课时、出勤、学情自动评分，高风险学员提前标红。",
   },
   {
     icon: Shield,
     tag: "多角色权限",
-    title: "老师看课表，财务看账单，各司其职",
-    description:
-      "老师、咨询师、财务、管理员各自有专属工作台，今日待办一目了然，敏感数据互相隔离，权限精细可控。",
+    title: "各司其职，数据隔离",
+    description: "老师、咨询师、财务各自的工作台，敏感数据互相隔离。",
   },
   {
     icon: FileCheck,
     tag: "私有化部署",
-    title: "数据留在你手里，不上任何公有云",
-    description:
-      "支持私有化部署，学员数据、财务数据完全在机构自己的服务器上。对数据安全有要求的机构的首选。",
+    title: "数据留在你手里",
+    description: "支持私有化部署，学员和财务数据不上任何公有云。",
   },
 ]
 
@@ -57,7 +56,7 @@ export function ValuePropositions() {
     <section id="capabilities" ref={sectionRef} className="px-6 py-20 md:py-28">
       <div className="mx-auto max-w-6xl">
         <div
-          className={`mb-14 text-center transition-all duration-700 ${
+          className={`mb-14 transition-all duration-700 ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}
         >
@@ -69,27 +68,54 @@ export function ValuePropositions() {
           </h2>
         </div>
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {capabilities.map((cap, i) => {
+        {/* 主要能力：两列大卡片 */}
+        <div className="mb-4 grid gap-4 sm:grid-cols-2">
+          {primary.map((cap, i) => {
             const Icon = cap.icon
             return (
               <div
                 key={i}
-                className={`group flex flex-col rounded-xl border border-border bg-card p-6 transition-all duration-700 hover:border-primary/20 sm:p-8 ${
+                className={`group relative overflow-hidden rounded-2xl border border-border bg-card p-8 transition-all duration-700 hover:border-primary/30 hover:shadow-md ${
                   isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
                 }`}
                 style={{ transitionDelay: `${200 + i * 120}ms` }}
               >
-                <div className="mb-4 flex flex-wrap items-center gap-3">
-                  <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10">
-                    <Icon className="size-5 text-primary" />
+                {/* 背景装饰 */}
+                <div className="pointer-events-none absolute -right-8 -top-8 size-32 rounded-full bg-primary/5 transition-all duration-500 group-hover:scale-150 group-hover:bg-primary/8" />
+
+                <div className="mb-5 flex items-center gap-3">
+                  <div className="flex size-12 items-center justify-center rounded-xl bg-primary/10">
+                    <Icon className="size-6 text-primary" />
                   </div>
                   <span className="rounded-full border border-border bg-secondary px-3 py-0.5 text-[11px] font-medium text-muted-foreground">
                     {cap.tag}
                   </span>
                 </div>
-                <h3 className="mb-2 text-lg font-semibold text-foreground">{cap.title}</h3>
+                <h3 className="mb-3 text-xl font-bold text-foreground">{cap.title}</h3>
                 <p className="text-sm leading-relaxed text-muted-foreground">{cap.description}</p>
+              </div>
+            )
+          })}
+        </div>
+
+        {/* 次要能力：四列小卡片，无背景，只有左边框 */}
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {secondary.map((cap, i) => {
+            const Icon = cap.icon
+            return (
+              <div
+                key={i}
+                className={`group flex flex-col gap-3 border-l-2 border-border pl-4 py-2 transition-all duration-700 hover:border-primary ${
+                  isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+                }`}
+                style={{ transitionDelay: `${440 + i * 100}ms` }}
+              >
+                <div className="flex items-center gap-2">
+                  <Icon className="size-4 text-primary shrink-0" />
+                  <span className="text-[11px] font-semibold text-muted-foreground">{cap.tag}</span>
+                </div>
+                <h3 className="text-sm font-semibold text-foreground leading-snug">{cap.title}</h3>
+                <p className="text-xs leading-relaxed text-muted-foreground">{cap.description}</p>
               </div>
             )
           })}

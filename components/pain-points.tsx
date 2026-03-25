@@ -30,7 +30,7 @@ export function PainPoints() {
     <section ref={sectionRef} className="px-6 py-20 md:py-28">
       <div className="mx-auto max-w-5xl">
         <div
-          className={`mb-14 text-center transition-all duration-700 ${
+          className={`mb-16 transition-all duration-700 ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}
         >
@@ -40,31 +40,38 @@ export function PainPoints() {
           <h2 className="text-balance text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl">
             {"当机构规模增长，问题也在放大"}
           </h2>
-          <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground sm:text-base">
-            {"每一次扩张，都在放大这些未被解决的结构性问题。"}
-          </p>
         </div>
 
-        <div className="grid gap-5 sm:grid-cols-3">
+        <div className="flex flex-col gap-0">
           {pains.map((pain, i) => {
             const Icon = pain.icon
             return (
               <div
                 key={i}
-                className={`rounded-xl border border-border bg-card p-6 transition-all duration-700 sm:p-8 ${
-                  isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+                className={`group flex gap-6 border-t border-border py-8 transition-all duration-700 last:border-b ${
+                  isVisible ? "translate-x-0 opacity-100" : "-translate-x-6 opacity-0"
                 }`}
-                style={{ transitionDelay: `${200 + i * 150}ms` }}
+                style={{ transitionDelay: `${150 + i * 150}ms` }}
               >
-                <div className="mb-4 flex size-11 items-center justify-center rounded-lg bg-destructive/10">
+                {/* 左侧序号 */}
+                <div className="shrink-0 pt-1">
+                  <span className="text-4xl font-black tabular-nums text-border group-hover:text-primary/20 transition-colors">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+
+                {/* 中间图标 */}
+                <div className="shrink-0 mt-1 flex size-10 items-center justify-center rounded-lg bg-destructive/8">
                   <Icon className="size-5 text-destructive" />
                 </div>
-                <h3 className="mb-2 text-base font-semibold text-foreground">
-                  {pain.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  {pain.description}
-                </p>
+
+                {/* 右侧文字 */}
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">{pain.title}</h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground max-w-2xl">
+                    {pain.description}
+                  </p>
+                </div>
               </div>
             )
           })}
