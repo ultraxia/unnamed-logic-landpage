@@ -10,13 +10,17 @@ export function RoiSection() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const isVisible = useScrollReveal(sectionRef)
 
-  // 用户填写：两个核心变量
-  const [studentCount, setStudentCount] = useState(300)
-  const [pricePerClass, setPricePerClass] = useState(200)
+  // 用户填写：两个核心变量（用字符串避免开头 0 的问题）
+  const [studentCountStr, setStudentCountStr] = useState("300")
+  const [pricePerClassStr, setPricePerClassStr] = useState("200")
+  const studentCount = Number(studentCountStr) || 0
+  const pricePerClass = Number(pricePerClassStr) || 0
 
   // 保留：批改人工成本计算
-  const [teacherSalary, setTeacherSalary] = useState(8000)
-  const [essaysPerStudent, setEssaysPerStudent] = useState(4)
+  const [teacherSalaryStr, setTeacherSalaryStr] = useState("8000")
+  const [essaysPerStudentStr, setEssaysPerStudentStr] = useState("4")
+  const teacherSalary = Number(teacherSalaryStr) || 0
+  const essaysPerStudent = Number(essaysPerStudentStr) || 0
   const [showDetail, setShowDetail] = useState(false)
 
   // 固定假设
@@ -125,20 +129,20 @@ export function RoiSection() {
             <label className="space-y-2">
               <p className="text-sm font-medium text-foreground">在读学生数（人）</p>
               <Input
-                type="number"
-                min={0}
-                value={studentCount}
-                onChange={(e) => setStudentCount(Number(e.target.value) || 0)}
+                type="text"
+                inputMode="numeric"
+                value={studentCountStr}
+                onChange={(e) => setStudentCountStr(e.target.value.replace(/[^0-9]/g, ""))}
                 className="text-lg h-12"
               />
             </label>
             <label className="space-y-2">
               <p className="text-sm font-medium text-foreground">单课时价格（元）</p>
               <Input
-                type="number"
-                min={0}
-                value={pricePerClass}
-                onChange={(e) => setPricePerClass(Number(e.target.value) || 0)}
+                type="text"
+                inputMode="numeric"
+                value={pricePerClassStr}
+                onChange={(e) => setPricePerClassStr(e.target.value.replace(/[^0-9]/g, ""))}
                 className="text-lg h-12"
               />
               <p className="text-xs text-muted-foreground">
@@ -232,8 +236,8 @@ export function RoiSection() {
                     <Input
                       type="number"
                       min={0}
-                      value={teacherSalary}
-                      onChange={(e) => setTeacherSalary(Number(e.target.value) || 0)}
+                      value={teacherSalaryStr}
+                      onChange={(e) => setTeacherSalaryStr(e.target.value.replace(/[^0-9]/g, ""))}
                       className="h-8 w-32 text-xs"
                     />
                   </div>
@@ -242,8 +246,8 @@ export function RoiSection() {
                     <Input
                       type="number"
                       min={0}
-                      value={essaysPerStudent}
-                      onChange={(e) => setEssaysPerStudent(Number(e.target.value) || 0)}
+                      value={essaysPerStudentStr}
+                      onChange={(e) => setEssaysPerStudentStr(e.target.value.replace(/[^0-9]/g, ""))}
                       className="h-8 w-32 text-xs"
                     />
                   </div>
