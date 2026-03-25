@@ -88,30 +88,30 @@ export function DataAssetSection() {
 }
 
 function AiScriptMockup({ show }: { show: boolean }) {
-  // 学生数据卡片
+  // 学生 + 家长关注维度
   const stats = [
     { label: "本月出勤", value: "11/12", good: true },
-    { label: "作文平均分", value: "87分", good: true },
-    { label: "薄弱项", value: "结构层次", good: false },
+    { label: "作文均分", value: "87分↑", good: true },
+    { label: "家长反馈", value: "盼提分", good: false },
   ]
 
   const lines = [
     {
       role: "ai",
-      text: "「王同学这个月出勤 11 次，作文平均 87 分，比上月提升了 9 分，结构层次是当前最大突破口。」",
-      delay: 800,
+      text: "「王同学这个月出勤率 92%，作文均分 87 分，比上月提升了 9 分——进步在加速。」",
+      delay: 700,
     },
     {
       role: "ai",
-      text: "「建议续报下学期，正好衔接议论文专项——她现在的基础，3 个月内拿到 95+ 问题不大。」",
-      delay: 1400,
+      text: "「您之前提到希望她尽快上 90 分，现在结构层次一突破基本就到了。下学期议论文专项正好衔接，3 个月内很有把握。」",
+      delay: 1300,
     },
-    { role: "tag", text: "✓ 基于真实学情，家长信服度更高", delay: 2000 },
+    { role: "tag", text: "✓ 回应家长诉求，不是推销课程", delay: 2000 },
   ]
 
   return (
-    <div className="flex h-44 flex-col gap-2 overflow-hidden rounded-lg bg-background p-3">
-      {/* 学生数据行 */}
+    <div className="flex h-48 flex-col gap-2 overflow-hidden rounded-lg bg-background p-3">
+      {/* 学生+家长数据行 */}
       <div
         className="flex gap-2"
         style={{

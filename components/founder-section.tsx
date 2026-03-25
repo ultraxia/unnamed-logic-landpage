@@ -61,7 +61,7 @@ export function FounderSection() {
                   <p className="text-lg leading-relaxed text-foreground">
                     <span className="font-semibold text-primary">{"未名逻辑"}</span>{" "}
                     {
-                      "认为,教培机构的竞争已经进入运营效率时代。差异不在于有没有 AI,而在于 AI 是否真正跑通了招生、教学、财务的全流程。我们把世界级工程方法与机构运营场景深度结合,帮助机构把 AI 从演示能力变成每天在用的运营系统。"
+                      "认为，教培机构的竞争已经进入运营效率时代。差异不在于有没有 AI，而在于 AI 是否真正跑通了招生、教学、财务的全流程。我们把世界级工程方法与机构运营场景深度结合，帮助机构把 AI 从演示能力变成每天在用的运营系统。"
                     }
                   </p>
                 </div>
