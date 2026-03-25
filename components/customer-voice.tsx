@@ -22,26 +22,7 @@ const highlights = [
   },
 ]
 
-const cases = [
-  {
-    org: "华东 K12 机构（5 校区）",
-    period: "上线 8 周",
-    before: "商机跟进全靠咨询师记忆，月末对账要花两天",
-    after: "系统接管跟进提醒和审批流水，运营主管从对账中解放",
-  },
-  {
-    org: "华北语文辅导机构（3 校区）",
-    period: "上线 1 个月",
-    before: "退费流程走微信群，财务经常漏单、错单",
-    after: "退费审批线上化，流水自动归档，月底对账一键完成",
-  },
-  {
-    org: "西南作文品牌（单校区）",
-    period: "试点 14 天",
-    before: "老师批改过载，家长续费靠感情维系",
-    after: "AI 批改解放老师，学情报告支撑续费面谈，试点后直接采购",
-  },
-]
+const cases: { org: string; period: string; before: string; after: string }[] = []
 
 export function CustomerVoice() {
   const sectionRef = useRef<HTMLDivElement>(null)
@@ -86,22 +67,7 @@ export function CustomerVoice() {
           </div>
         </div>
 
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
-          {cases.map((item, index) => (
-            <article
-              key={item.org}
-              className={`rounded-xl border border-border bg-background p-5 transition-all duration-700 ${
-                isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-              }`}
-              style={{ transitionDelay: `${480 + index * 140}ms` }}
-            >
-              <p className="text-sm font-semibold text-foreground">{item.org}</p>
-              <p className="mt-1 text-xs text-primary">{item.period}</p>
-              <p className="mt-3 text-xs leading-5 text-muted-foreground">{item.before}</p>
-              <p className="mt-2 text-xs leading-5 text-foreground">{item.after}</p>
-            </article>
-          ))}
-        </div>
+
       </div>
     </section>
   )
