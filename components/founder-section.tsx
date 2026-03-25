@@ -34,7 +34,7 @@ export function FounderSection() {
 
               <div className="flex-1">
                 <p className="mb-1 text-xs font-semibold uppercase tracking-widest text-primary">
-                  {"About Origin AI"}
+                  {"About Origin Intelligence"}
                 </p>
                 <h3 className="mb-1 text-xl font-bold text-foreground">
                   {"关于"}

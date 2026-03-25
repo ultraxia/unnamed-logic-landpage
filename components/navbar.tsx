@@ -26,7 +26,7 @@ export function Navbar() {
             <span className="text-sm font-semibold tracking-tight text-foreground">
               {"原点智能"}
             </span>
-            <span className="text-[10px] leading-none text-muted-foreground">Origin AI</span>
+            <span className="text-[10px] leading-none text-muted-foreground">Origin Intelligence</span>
           </div>
         </a>
 
