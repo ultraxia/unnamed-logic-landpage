@@ -179,7 +179,7 @@ function CountUpNumber({
 
 function TodoDashboardPreview({ show }: { show: boolean }) {
   const todoItems = [
-    { label: "待跟进商机", count: "12 条", color: "text-orange-500", bgColor: "bg-orange-500/10", dotColor: "bg-orange-500", delay: 900 },
+    { label: "待跟进商机", count: "12 条", color: "text-orange-500", bgColor: "bg-orange-500/10", dotColor: "bg-emerald-500", delay: 900 },
     { label: "待审批报名", count: "5 条", color: "text-red-500", bgColor: "bg-red-500/10", dotColor: "bg-red-500", delay: 1100 },
     { label: "流失预警学员", count: "8 人", color: "text-destructive", bgColor: "bg-destructive/10", dotColor: "bg-destructive", delay: 1300 },
     { label: "待审批退费", count: "2 条", color: "text-yellow-600", bgColor: "bg-yellow-500/10", dotColor: "bg-yellow-500", delay: 1500 },
