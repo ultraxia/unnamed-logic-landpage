@@ -97,45 +97,123 @@ html {
   scroll-padding-top: 5rem;
 }
 
+/* ── Hero 背景光晕 ── */
 .hero-ambient {
   position: absolute;
-  inset: -20% -10%;
+  inset: -30% -15%;
   background:
-    radial-gradient(40% 40% at 15% 25%, color-mix(in srgb, var(--primary) 18%, transparent), transparent 70%),
-    radial-gradient(36% 42% at 82% 30%, color-mix(in srgb, var(--chart-3) 16%, transparent), transparent 72%),
-    radial-gradient(48% 38% at 55% 88%, color-mix(in srgb, var(--chart-2) 12%, transparent), transparent 75%);
-  filter: blur(14px);
-  animation: heroShift 12s ease-in-out infinite alternate;
+    radial-gradient(50% 50% at 20% 30%, color-mix(in srgb, var(--primary) 22%, transparent), transparent 65%),
+    radial-gradient(40% 45% at 80% 20%, color-mix(in srgb, #a78bfa 20%, transparent), transparent 65%),
+    radial-gradient(55% 40% at 60% 85%, color-mix(in srgb, var(--chart-2) 14%, transparent), transparent 70%);
+  filter: blur(40px);
+  animation: heroShift 14s ease-in-out infinite alternate;
   pointer-events: none;
 }
 
+/* 三个漂浮光球 */
+.hero-orb-1 {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  top: -10%;
+  left: -8%;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--primary) 15%, transparent), transparent 70%);
+  filter: blur(60px);
+  animation: orbFloat1 18s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.hero-orb-2 {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  top: 10%;
+  right: -5%;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, #a78bfa 18%, transparent), transparent 70%);
+  filter: blur(50px);
+  animation: orbFloat2 22s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.hero-orb-3 {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  bottom: 5%;
+  left: 40%;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, #38bdf8 12%, transparent), transparent 70%);
+  filter: blur(45px);
+  animation: orbFloat3 16s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Hero 标题渐变 */
+.hero-gradient-text {
+  background: linear-gradient(135deg, var(--primary) 0%, #a78bfa 50%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 毛玻璃卡片 */
+.hero-card {
+  background: color-mix(in srgb, var(--card) 80%, transparent);
+  border: 1px solid color-mix(in srgb, white 10%, transparent);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, white 5%, transparent),
+    0 20px 60px -10px rgba(0,0,0,0.3),
+    inset 0 1px 0 color-mix(in srgb, white 8%, transparent);
+}
+
+/* CTA 按钮发光 */
+.hero-cta-btn {
+  background: linear-gradient(135deg, var(--primary), color-mix(in srgb, var(--primary) 70%, #a78bfa));
+  box-shadow: 0 0 24px color-mix(in srgb, var(--primary) 40%, transparent);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+.hero-cta-btn:hover {
+  box-shadow: 0 0 36px color-mix(in srgb, var(--primary) 55%, transparent);
+  transform: translateY(-1px);
+}
+
 .animate-word-fade {
-  animation: wordFade 0.6s ease-out;
+  animation: wordFade 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes wordFade {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(10px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 @keyframes heroShift {
-  from {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  to {
-    transform: translate3d(0, -2%, 0) scale(1.05);
-  }
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(2%, -3%, 0) scale(1.06); }
+}
+
+@keyframes orbFloat1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(30px, -20px) scale(1.05); }
+  66%  { transform: translate(-15px, 25px) scale(0.97); }
+}
+
+@keyframes orbFloat2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40%  { transform: translate(-25px, 30px) scale(1.08); }
+  70%  { transform: translate(20px, -15px) scale(0.95); }
+}
+
+@keyframes orbFloat3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(-20px, -25px) scale(1.1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-ambient,
-  .animate-word-fade {
+  .hero-ambient, .hero-orb-1, .hero-orb-2, .hero-orb-3, .animate-word-fade {
     animation: none !important;
   }
 }
