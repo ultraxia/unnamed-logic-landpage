@@ -48,7 +48,7 @@ export function SolutionFlow() {
   const isVisible = useScrollReveal(sectionRef)
 
   return (
-    <section id="solution" ref={sectionRef} className="border-y border-border bg-card px-6 py-20 md:py-28">
+    <section id="solution" ref={sectionRef} className="overflow-x-hidden border-y border-border bg-card px-6 py-20 md:py-28">
       <div className="mx-auto max-w-5xl">
         <div
           className={`mb-16 text-center transition-all duration-700 ${

@@ -47,7 +47,7 @@ export function FaqSection() {
   const isVisible = useScrollReveal(sectionRef)
 
   return (
-    <section id="faq" ref={sectionRef} className="px-6 py-20 md:py-28">
+    <section id="faq" ref={sectionRef} className="overflow-x-hidden px-6 py-20 md:py-28">
       <div className="mx-auto max-w-3xl">
         <div
           className={`mb-12 text-center transition-all duration-700 ${

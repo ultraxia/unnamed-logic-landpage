@@ -54,7 +54,7 @@ export function ValuePropositions() {
   const isVisible = useScrollReveal(sectionRef)
 
   return (
-    <section id="capabilities" ref={sectionRef} className="px-6 py-20 md:py-28">
+    <section id="capabilities" ref={sectionRef} className="overflow-x-hidden px-6 py-20 md:py-28">
       <div className="mx-auto max-w-6xl">
         <div
           className={`mb-14 transition-all duration-700 ${

@@ -16,7 +16,7 @@ export function FounderSection() {
   const isVisible = useScrollReveal(sectionRef)
 
   return (
-    <section id="founder" ref={sectionRef} className="px-6 py-20 md:py-28">
+    <section id="founder" ref={sectionRef} className="overflow-x-hidden px-6 py-20 md:py-28">
       <div className="mx-auto max-w-4xl">
         <div
           className={`transition-all duration-700 ${

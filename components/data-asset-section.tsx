@@ -8,7 +8,7 @@ export function DataAssetSection() {
   const isVisible = useScrollReveal(sectionRef)
 
   return (
-    <section id="data-asset" ref={sectionRef} className="border-y border-border bg-card px-6 py-20 md:py-28">
+    <section id="data-asset" ref={sectionRef} className="overflow-x-hidden border-y border-border bg-card px-6 py-20 md:py-28">
       <div className="mx-auto max-w-6xl">
         <div
           className={`mb-14 text-center transition-all duration-700 ${

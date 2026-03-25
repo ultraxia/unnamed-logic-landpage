@@ -103,7 +103,7 @@ export function RoiSection() {
   const fmt = (n: number) => n.toLocaleString("zh-CN")
 
   return (
-    <section id="roi" ref={sectionRef} className="scroll-mt-24 px-6 py-20 md:py-28">
+    <section id="roi" ref={sectionRef} className="overflow-x-hidden scroll-mt-24 px-6 py-20 md:py-28">
       <div className="mx-auto max-w-6xl">
         <div
           className={`mb-12 text-center transition-all duration-700 ${

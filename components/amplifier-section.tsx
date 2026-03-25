@@ -27,7 +27,7 @@ export function AmplifierSection() {
   const isVisible = useScrollReveal(sectionRef)
 
   return (
-    <section id="amplifier" ref={sectionRef} className="px-6 py-20 md:py-28">
+    <section id="amplifier" ref={sectionRef} className="overflow-x-hidden px-6 py-20 md:py-28">
       <div className="mx-auto max-w-6xl">
         <div
           className={`mb-12 text-center transition-all duration-700 ${

@@ -29,7 +29,7 @@ export function CustomerVoice() {
   const isVisible = useScrollReveal(sectionRef)
 
   return (
-    <section ref={sectionRef} className="px-6 py-20 md:py-28">
+    <section ref={sectionRef} className="overflow-x-hidden px-6 py-20 md:py-28">
       <div className="mx-auto max-w-6xl">
         <div
           className={`rounded-xl border border-border bg-card p-6 transition-all duration-700 sm:p-8 md:p-10 ${

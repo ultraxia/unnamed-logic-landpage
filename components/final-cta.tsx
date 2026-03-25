@@ -10,7 +10,7 @@ export function FinalCta() {
   const isVisible = useScrollReveal(sectionRef)
 
   return (
-    <section ref={sectionRef} className="px-6 py-20 md:py-28">
+    <section ref={sectionRef} className="overflow-x-hidden px-6 py-20 md:py-28">
       <div className="mx-auto max-w-3xl">
         <div
           className={`transition-all duration-700 ${
