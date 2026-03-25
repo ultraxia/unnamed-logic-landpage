@@ -61,7 +61,7 @@ export function RoiSection() {
     const annualManualCost = monthlyManualCost * 12
 
     const billableStudents = Math.max(safeStudents, 300)
-    const systemAnnualCost = 100000 + 60000 + billableStudents * 100
+    const systemAnnualCost = billableStudents * 15 * 12
     const annualManualSaved = Math.max(0, annualManualCost - systemAnnualCost)
 
     // ── 综合 ROI ──
