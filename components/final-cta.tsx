@@ -30,7 +30,7 @@ export function FinalCta() {
             </div>
 
             <h2 className="mb-3 text-balance text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-              {"本季度，限 10 家。"}
+              {"本季度，限 10 家"}
             </h2>
 
             <p className="mx-auto mb-8 max-w-xl text-sm text-muted-foreground">

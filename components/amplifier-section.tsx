@@ -36,7 +36,7 @@ export function AmplifierSection() {
         >
           <p className="section-label mb-2 text-xs font-semibold uppercase tracking-widest">Operating System</p>
           <h2 className="section-title text-balance text-2xl font-bold text-foreground sm:text-3xl md:text-4xl lg:text-5xl">
-            {"不只是工具，是你的运营 OS。"}
+            {"不只是工具，是你的运营 OS"}
           </h2>
           <p className="mx-auto mt-3 max-w-3xl text-sm text-muted-foreground sm:text-base">
             {"有没有 AI 不是问题。AI 有没有在执行你的业务逻辑，才是。"}

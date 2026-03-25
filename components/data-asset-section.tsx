@@ -19,7 +19,7 @@ export function DataAssetSection() {
             AI Intelligence
           </p>
           <h2 className="section-title text-balance text-2xl font-bold text-foreground sm:text-3xl md:text-4xl lg:text-5xl">
-            {"问题发生前，AI 已经介入。"}
+            {"问题发生前，AI 已经介入"}
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground sm:text-base">
             {"实时扫描每一个商机、每一位学员，在最关键的时机触发行动。"}

@@ -62,7 +62,7 @@ export function SolutionFlow() {
             {"从招生到续费，四步闭环"}
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground sm:text-base">
-            {"每一步，都有数据接管。"}
+            {"每一步，都有数据接管"}
           </p>
         </div>
 
