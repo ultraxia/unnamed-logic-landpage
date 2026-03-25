@@ -65,7 +65,7 @@ export function ValuePropositions() {
             Capabilities
           </p>
           <h2 className="text-balance text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl">
-            {"每一项能力，都直接对应商业结果"}
+            {"能力不停留在演示里。"}
           </h2>
         </div>
 

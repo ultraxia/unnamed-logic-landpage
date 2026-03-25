@@ -35,7 +35,7 @@ export function PainPoints() {
             Pain Points
           </p>
           <h2 className="text-balance text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl">
-            {"当机构规模增长，问题也在放大"}
+            {"规模越大，问题越贵。"}
           </h2>
         </div>
 

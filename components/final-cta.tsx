@@ -30,11 +30,11 @@ export function FinalCta() {
             </div>
 
             <h2 className="mb-3 text-balance text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-              {"本季度限额开放 10 家机构深度共建"}
+              {"本季度，限 10 家。"}
             </h2>
 
             <p className="mx-auto mb-8 max-w-xl text-sm text-muted-foreground">
-              {"先试点再全面上线：2 周完成系统部署与团队培训，用真实运营结果决定是否推进。"}
+              {"两周部署。真实结果说话。不满意可以走。"}
             </p>
 
             <div className="mb-8 inline-flex flex-col gap-3 text-left">

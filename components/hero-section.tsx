@@ -31,7 +31,7 @@ export function HeroSection() {
           }`}
         >
           <Shield className="size-3.5 text-primary" />
-          {"覆盖招生 · 教学 · 财务全流程"}
+          {"招生。教学。财务。一个系统全覆盖。"}
         </div>
 
         {/* Heading */}

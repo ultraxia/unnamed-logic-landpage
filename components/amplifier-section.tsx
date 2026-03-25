@@ -36,10 +36,10 @@ export function AmplifierSection() {
         >
           <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-primary">Operating System</p>
           <h2 className="text-balance text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl">
-            {"不是工具，是机构的 AI 运营 OS"}
+            {"不只是工具。是你的运营 OS。"}
           </h2>
           <p className="mx-auto mt-3 max-w-3xl text-sm text-muted-foreground sm:text-base">
-            {"真正的差异，不在有没有 AI，而在 AI 是否在执行你自己的业务逻辑。先固化机构方法，再规模化交付。"}
+            {"有没有 AI 不是问题。AI 有没有在执行你的业务逻辑，才是。"}
           </p>
         </div>
 

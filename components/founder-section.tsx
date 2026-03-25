@@ -70,7 +70,7 @@ export function FounderSection() {
                   <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-primary/90">Window</p>
                   <p className="text-sm leading-relaxed text-foreground">
                     {
-                      "窗口期正在快速收窄：先完成 AI 运营升级的机构，会先建立招生转化、续费留存和财务效率的复合优势。观望越久，后发追赶成本越高。"
+                      "先动的机构，先建壁垒。越晚越贵。"
                     }
                   </p>
                 </div>

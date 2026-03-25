@@ -112,10 +112,10 @@ export function RoiSection() {
         >
           <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-primary">ROI</p>
           <h2 className="text-balance text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl">
-            {"不讲故事，直接看投入产出"}
+            {"数字不会说谎。"}
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm text-muted-foreground sm:text-base">
-            {"填入两个数字，看看系统能为你的机构带来多少年度综合回报。"}
+            {"两个数字，看清一年的回报。"}
           </p>
         </div>
 
