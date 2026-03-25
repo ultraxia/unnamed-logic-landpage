@@ -7,18 +7,18 @@ import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 const points = [
   {
     icon: Fingerprint,
-    title: "先固化 SOP，再规模化执行",
-    description: "把你机构最有效的跟进节奏、批改标准、续费策略固化进系统。AI 照着你的方法干活，不是用一套通用模板应付所有机构。",
+    title: "你的标准，AI 来执行",
+    description: "跟进节奏、批改口径、续费策略，全部沉淀进系统。AI 用的是你的方法论，不是一套通用模板套所有机构。",
   },
   {
     icon: TrendingUp,
-    title: "每个角色都有专属放大器",
-    description: "咨询师不漏跟进，财务不漏单，老师不堆批改，校长随时看全局。一套系统，四个角色各自高效，不靠人盯人。",
+    title: "每个角色，都有自己的主场",
+    description: "咨询师有商机看板，财务有审批流水，老师有批改中心，校长有全局数据。各司其职，不靠人盯人，不靠微信群协调。",
   },
   {
     icon: Sparkles,
-    title: "机构越用越聪明",
-    description: "每一次跟进、每一笔收款、每一份批改都在积累。系统对你机构的了解越来越深，给出的建议越来越准，先用的机构先建立壁垒。",
+    title: "用得越久，优势越大",
+    description: "每一次跟进、每一笔收款、每一份批改，都在沉淀数据。系统越了解你的机构，给出的判断就越准，这是时间买不来的壁垒。",
   },
 ]
 
@@ -36,7 +36,7 @@ export function AmplifierSection() {
         >
           <p className="section-label mb-2 text-xs font-semibold uppercase tracking-widest">Operating System</p>
           <h2 className="section-title text-balance text-2xl font-bold text-foreground sm:text-3xl md:text-4xl lg:text-5xl">
-            {"不只是工具。是你的运营 OS。"}
+            {"不只是工具，是你的运营 OS。"}
           </h2>
           <p className="mx-auto mt-3 max-w-3xl text-sm text-muted-foreground sm:text-base">
             {"有没有 AI 不是问题。AI 有没有在执行你的业务逻辑，才是。"}
