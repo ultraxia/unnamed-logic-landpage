@@ -179,10 +179,10 @@ function CountUpNumber({
 
 function TodoDashboardPreview({ show }: { show: boolean }) {
   const todoItems = [
-    { label: "待跟进商机", count: "12 条", color: "text-orange-500", bgColor: "bg-orange-500/10", delay: 900, urgent: true },
-    { label: "待审批报名", count: "5 条", color: "text-red-500", bgColor: "bg-red-500/10", delay: 1100, urgent: true },
-    { label: "流失预警学员", count: "8 人", color: "text-destructive", bgColor: "bg-destructive/10", delay: 1300, urgent: true },
-    { label: "待审批退费", count: "2 条", color: "text-chart-3", bgColor: "bg-chart-3/10", delay: 1500, urgent: true },
+    { label: "待跟进商机", count: "12 条", color: "text-orange-500", bgColor: "bg-orange-500/10", dotColor: "bg-orange-500", delay: 900 },
+    { label: "待审批报名", count: "5 条", color: "text-red-500", bgColor: "bg-red-500/10", dotColor: "bg-red-500", delay: 1100 },
+    { label: "流失预警学员", count: "8 人", color: "text-destructive", bgColor: "bg-destructive/10", dotColor: "bg-destructive", delay: 1300 },
+    { label: "待审批退费", count: "2 条", color: "text-yellow-600", bgColor: "bg-yellow-500/10", dotColor: "bg-yellow-500", delay: 1500 },
   ]
 
   return (
@@ -210,9 +210,7 @@ function TodoDashboardPreview({ show }: { show: boolean }) {
             }}
           >
             <div className="flex items-center gap-2">
-              {item.urgent && (
-                <span className={`size-1.5 rounded-full ${item.color.replace("text-", "bg-")}`} />
-              )}
+              <span className={`size-1.5 shrink-0 rounded-full ${item.dotColor}`} />
               <span className="text-sm text-muted-foreground">{item.label}</span>
             </div>
             <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${item.color} ${item.bgColor}`}>
