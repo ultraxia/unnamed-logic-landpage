@@ -8,26 +8,26 @@ const steps = [
   {
     icon: Upload,
     step: "01",
-    title: "上传作业",
-    description: "拍照或扫描上传，支持多种格式批量导入。",
+    title: "招生跟进",
+    description: "商机录入、试听安排、AI 话术辅助，转化数据实时可见，再也不漏跟进。",
   },
   {
     icon: FileCheck,
     step: "02",
-    title: "AI 批改 + 满分范文",
-    description: "单篇约 1 分钟完成批改与改写，并发处理下 100 篇仍保持分钟级交付。",
+    title: "报名收款",
+    description: "咨询师提交订单，财务线上审批，收款记录自动归档。退费也走审批流，账务清晰。",
   },
   {
     icon: BarChart3,
     step: "03",
-    title: "自动学情画像",
-    description: "精准捕捉学生弱点分布，生成结构化进步趋势分析。",
+    title: "教学管理",
+    description: "排课、点名、AI 作文批改一体化，学情数据自动沉淀，老师从重复劳动中解放。",
   },
   {
     icon: TrendingUp,
     step: "04",
-    title: "续费支持报告",
-    description: "可视化教学成果，为家长提供数据化续费依据。",
+    title: "续费决策",
+    description: "续费预警提前介入，学情报告替代话术，用数据说服家长，续费率可量化提升。",
   },
 ]
 
@@ -47,10 +47,10 @@ export function SolutionFlow() {
             Solution
           </p>
           <h2 className="text-balance text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl">
-            {"从上传到续费，四步闭环"}
+            {"从招生到续费，四步闭环"}
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground sm:text-base">
-            {"替代旧流程，让每一个环节都为机构创造可量化的商业价值。"}
+            {"每一个环节都有数据支撑，让机构运营从经验驱动变成数据驱动。"}
           </p>
         </div>
 

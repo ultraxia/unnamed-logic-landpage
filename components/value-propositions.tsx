@@ -1,37 +1,51 @@
 "use client"
 
 import { useRef } from "react"
-import { Shield, FileCheck, Zap, BarChart3 } from "lucide-react"
+import { Shield, FileCheck, Zap, BarChart3, Users, CreditCard } from "lucide-react"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 
 const capabilities = [
   {
-    icon: Shield,
-    tag: "8 维 Schema 诊断",
-    title: "让家长看到结构性改进建议",
-    description:
-      "不是笼统的评分，而是内容、结构、逻辑、语法等 8 个维度的精准拆解。每一份报告都让家长清晰看到孩子的进步路径，强化教学品牌信任。",
-  },
-  {
-    icon: FileCheck,
-    tag: "满分范文硬约束",
-    title: "学生拿到手就能改、能练",
-    description:
-      "系统强制生成与题目高度契合的高质量满分范文，不是泛泛的模板，而是精准的修改路径。学生有标杆可对照，教学闭环真正落地。",
-  },
-  {
     icon: Zap,
-    tag: "高并发异步集群",
-    title: "大型统考当天零延迟",
+    tag: "AI 作文批改",
+    title: "2s 出报告，老师从批改中解放",
     description:
-      "基于工业级调度架构，单篇约 1 分钟处理；全校统考并发提交时，整体交付时长不再随篇数线性增加。",
+      "单篇 2 秒完成批改、满分范文、8 维学情诊断。并发处理下全班统考当天交付，老师精力回归教学本身。",
+  },
+  {
+    icon: Users,
+    tag: "招生漏斗管理",
+    title: "每条商机都有跟进记录可查",
+    description:
+      "商机录入、试听安排、AI 话术辅助一体化。系统自动提醒逾期跟进，转化率从经验数字变成可追踪指标。",
+  },
+  {
+    icon: CreditCard,
+    tag: "财务审批闭环",
+    title: "收款退费全程线上，账务零漏洞",
+    description:
+      "报名由咨询师提交、财务审批后生效；退费同样走审批流。所有流水自动归档，月底对账一键导出。",
   },
   {
     icon: BarChart3,
-    tag: "学情数据引擎",
-    title: "续费不靠话术，靠数据",
+    tag: "续费预警引擎",
+    title: "提前 30 天知道谁要流失",
     description:
-      "自动沉淀每位学生的进步曲线与弱点分布。续费面谈时，一张数据报告胜过一百句承诺。",
+      "系统自动识别课时消耗进度、出勤率、学情趋势，提前预警高流失风险学员，让续费从被动应对变为主动出击。",
+  },
+  {
+    icon: Shield,
+    tag: "多角色权限",
+    title: "老师看课表，财务看账单，各司其职",
+    description:
+      "老师、咨询师、财务、管理员各自有专属工作台，今日待办一目了然，敏感数据互相隔离，权限精细可控。",
+  },
+  {
+    icon: FileCheck,
+    tag: "私有化部署",
+    title: "数据留在你手里，不上任何公有云",
+    description:
+      "支持私有化部署，学员数据、财务数据完全在机构自己的服务器上。对数据安全有要求的机构的首选。",
   },
 ]
 
@@ -55,7 +69,7 @@ export function ValuePropositions() {
           </h2>
         </div>
 
-        <div className="grid gap-5 sm:grid-cols-2">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {capabilities.map((cap, i) => {
             const Icon = cap.icon
             return (

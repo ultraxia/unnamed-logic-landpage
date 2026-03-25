@@ -31,7 +31,7 @@ export function HeroSection() {
           }`}
         >
           <Shield className="size-3.5 text-primary" />
-          {"100+ 班级真实运行 · 99.9% 可用性"}
+          {"覆盖招生 · 教学 · 财务全流程"}
         </div>
 
         {/* Heading */}
@@ -40,7 +40,7 @@ export function HeroSection() {
             mounted ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}
         >
-          {"班级平均等待约 2s / 篇"}
+          {"教培机构的 AI 运营系统"}
           <br />
           <span className="inline-flex min-h-12 items-center justify-center text-primary sm:min-h-14">
             <span
@@ -59,9 +59,9 @@ export function HeroSection() {
           }`}
         >
           {[
-            { value: 2, suffix: "s", label: "30 人班级平均 / 篇", decimals: 0 },
-            { value: 1, suffix: " min", label: "单篇批改+改写", decimals: 0 },
-            { value: 500, suffix: " 篇", label: "并发分钟级交付", decimals: 0, plus: true },
+            { value: 2, suffix: "s", label: "AI 批改单篇", decimals: 0, plus: false },
+            { value: 100, suffix: "%", label: "审批流程线上化", decimals: 0, plus: false },
+            { value: 0, suffix: " 条", label: "漏跟进商机", decimals: 0, plus: false },
           ].map((stat, i) => (
             <div key={i} className="flex flex-col items-center">
               <span className="text-2xl font-bold text-foreground sm:text-3xl">
@@ -98,20 +98,20 @@ export function HeroSection() {
           </Button>
         </div>
 
-        {/* AI grading report - healing line-by-line animation */}
+        {/* 今日待办看板预览 */}
         <div
           className={`mx-auto mt-16 max-w-2xl transition-all duration-1000 delay-600 ${
             mounted ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
           }`}
         >
-          <GradingReportPreview show={mounted} />
+          <TodoDashboardPreview show={mounted} />
         </div>
       </div>
     </section>
   )
 }
 
-const rotatingWords = ["批改 + 满分改写", "批改 + 诊断报告", "批改 + 提分闭环"] as const
+const rotatingWords = ["招生转化翻倍", "财务零延误", "学情一目了然"] as const
 
 function CountUpNumber({
   end,
@@ -177,13 +177,12 @@ function CountUpNumber({
   )
 }
 
-function GradingReportPreview({ show }: { show: boolean }) {
-  const reportLines = [
-    { label: "内容深度", score: 8.5, delay: 900 },
-    { label: "结构完整", score: 7.0, delay: 1100 },
-    { label: "逻辑连贯", score: 9.0, delay: 1300 },
-    { label: "语法准确", score: 6.5, delay: 1500 },
-    { label: "综合评分", score: 7.8, delay: 1700 },
+function TodoDashboardPreview({ show }: { show: boolean }) {
+  const todoItems = [
+    { label: "待审批报名", count: "3 条", color: "text-orange-500", bgColor: "bg-orange-500/10", delay: 900, urgent: true },
+    { label: "待审批退费", count: "1 条", color: "text-red-500", bgColor: "bg-red-500/10", delay: 1100, urgent: false },
+    { label: "今日课节", count: "4 节", color: "text-primary", bgColor: "bg-primary/10", delay: 1300, urgent: false },
+    { label: "待填试听反馈", count: "2 条", color: "text-chart-3", bgColor: "bg-chart-3/10", delay: 1500, urgent: false },
   ]
 
   return (
@@ -191,15 +190,15 @@ function GradingReportPreview({ show }: { show: boolean }) {
       {/* Header bar */}
       <div className="flex items-center justify-between border-b border-border bg-secondary/50 px-5 py-3">
         <div className="flex items-center gap-2">
-          <div className="size-2 rounded-full bg-chart-3" />
-          <span className="text-xs font-medium text-foreground">{"AI 批改报告"}</span>
+          <div className="size-2 rounded-full bg-primary" />
+          <span className="text-xs font-medium text-foreground">{"今日待办"}</span>
         </div>
-        <span className="text-[11px] text-muted-foreground">{"学生: 张明辉 · 议论文"}</span>
+        <span className="text-[11px] text-muted-foreground">{"王老师 · 财务"}</span>
       </div>
 
-      {/* Report lines with staggered reveal */}
+      {/* Todo items with staggered reveal */}
       <div className="p-5">
-        {reportLines.map((line, i) => (
+        {todoItems.map((item, i) => (
           <div
             key={i}
             className="flex items-center justify-between border-b border-border/40 py-3 last:border-0"
@@ -207,29 +206,24 @@ function GradingReportPreview({ show }: { show: boolean }) {
               opacity: show ? 1 : 0,
               transform: show ? "translateX(0)" : "translateX(-20px)",
               transition: "all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-              transitionDelay: `${line.delay}ms`,
+              transitionDelay: `${item.delay}ms`,
             }}
           >
-            <span className="text-sm text-muted-foreground">{line.label}</span>
-            <div className="flex items-center gap-3">
-              <div className="h-2 w-24 overflow-hidden rounded-full bg-secondary sm:w-36">
-                <div
-                  className="h-full rounded-full bg-primary"
-                  style={{
-                    width: show ? `${line.score * 10}%` : "0%",
-                    transition: "width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-                    transitionDelay: `${line.delay + 200}ms`,
-                  }}
-                />
-              </div>
-              <span className={`w-12 text-right text-sm font-semibold ${
-                i === reportLines.length - 1 ? "text-primary" : "text-foreground"
-              }`}>
-                {line.score.toFixed(1)}
-              </span>
+            <div className="flex items-center gap-2">
+              {item.urgent && (
+                <span className="size-1.5 rounded-full bg-orange-500" />
+              )}
+              <span className="text-sm text-muted-foreground">{item.label}</span>
             </div>
+            <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${item.color} ${item.bgColor}`}>
+              {item.count}
+            </span>
           </div>
         ))}
+      </div>
+
+      <div className="border-t border-border/40 bg-secondary/30 px-5 py-2.5">
+        <span className="text-[11px] text-muted-foreground">{"点击任意条目直接跳转处理 →"}</span>
       </div>
     </div>
   )
