@@ -12,7 +12,7 @@ import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 const faqs = [
   {
     question: "系统适合多大规模的机构？",
-    answer: "100 到 2000 名学生均适用。按学生规模计费，随时可以扩容，不需要重新迁移。",
+    answer: "从小型单校区到多校区连锁均适用。按学生规模灵活计费，随时扩容，不需要重新迁移。",
   },
   {
     question: "财务数据安全吗？",
