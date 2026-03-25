@@ -42,7 +42,7 @@ export function DataAssetSection() {
             </div>
             <AiScriptMockup show={isVisible} />
             <p className="mt-3 text-xs text-muted-foreground">
-              {"试听结束后自动生成定制话术，根据学生学情和家长关注点精准组织说辞。"}
+              {"基于出勤、得分、薄弱项等真实数据生成话术，家长听到的是孩子的具体情况，不是套话。"}
             </p>
           </div>
 
@@ -88,19 +88,52 @@ export function DataAssetSection() {
 }
 
 function AiScriptMockup({ show }: { show: boolean }) {
+  // 学生数据卡片
+  const stats = [
+    { label: "本月出勤", value: "11/12", good: true },
+    { label: "作文平均分", value: "87分", good: true },
+    { label: "薄弱项", value: "结构层次", good: false },
+  ]
+
   const lines = [
-    { role: "sys", text: "分析试听学员：李同学，8岁，逻辑思维强，注意力集中度高", delay: 600 },
-    { role: "ai", text: "根据学情生成话术...", delay: 900, typing: true },
-    { role: "ai", text: "「李同学今天试听表现非常活跃，逻辑推理能力在同龄中属于上游。我们有一个专门针对这类孩子的强化班...」", delay: 1300 },
-    { role: "tag", text: "✓ 转化成功率 +34%", delay: 1800 },
+    {
+      role: "ai",
+      text: "「王同学这个月出勤 11 次，作文平均 87 分，比上月提升了 9 分，结构层次是当前最大突破口。」",
+      delay: 800,
+    },
+    {
+      role: "ai",
+      text: "「建议续报下学期，正好衔接议论文专项——她现在的基础，3 个月内拿到 95+ 问题不大。」",
+      delay: 1400,
+    },
+    { role: "tag", text: "✓ 基于真实学情，家长信服度更高", delay: 2000 },
   ]
 
   return (
-    <div className="flex h-36 flex-col gap-2 overflow-hidden rounded-lg bg-background p-3">
+    <div className="flex h-44 flex-col gap-2 overflow-hidden rounded-lg bg-background p-3">
+      {/* 学生数据行 */}
+      <div
+        className="flex gap-2"
+        style={{
+          opacity: show ? 1 : 0,
+          transform: show ? "translateY(0)" : "translateY(6px)",
+          transition: "all 0.4s ease",
+          transitionDelay: "400ms",
+        }}
+      >
+        {stats.map((s, i) => (
+          <div key={i} className="flex-1 rounded bg-secondary px-2 py-1.5 text-center">
+            <p className="text-[8px] text-muted-foreground">{s.label}</p>
+            <p className={`text-[11px] font-bold ${s.good ? "text-emerald-600" : "text-orange-500"}`}>{s.value}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* AI 话术 */}
       {lines.map((line, i) => (
         <div
           key={i}
-          className={`flex items-start gap-2 ${line.role === "tag" ? "mt-auto" : ""}`}
+          className={`flex items-start gap-1.5 ${line.role === "tag" ? "mt-auto" : ""}`}
           style={{
             opacity: show ? 1 : 0,
             transform: show ? "translateY(0)" : "translateY(6px)",
@@ -108,11 +141,6 @@ function AiScriptMockup({ show }: { show: boolean }) {
             transitionDelay: `${line.delay}ms`,
           }}
         >
-          {line.role === "sys" && (
-            <span className="mt-0.5 shrink-0 rounded bg-secondary px-1.5 py-0.5 text-[9px] font-medium text-muted-foreground">
-              SYS
-            </span>
-          )}
           {line.role === "ai" && (
             <span className="mt-0.5 shrink-0 rounded bg-primary/15 px-1.5 py-0.5 text-[9px] font-medium text-primary">
               AI
