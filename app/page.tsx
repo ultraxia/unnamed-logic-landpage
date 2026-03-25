@@ -20,14 +20,14 @@ export default function Page() {
       {/* 1. Hero - 直接商业利益 + AI 批改报告动效 */}
       <HeroSection />
 
-      {/* 2. 痛点区 - 规模增长下的结构性问题 */}
+      {/* 2. 放大器定位 - 为什么是我们 */}
+      <AmplifierSection />
+
+      {/* 3. 痛点区 - 规模增长下的结构性问题 */}
       <PainPoints />
 
-      {/* 3. 解决方案流程 - 四步闭环替代旧流程 */}
+      {/* 4. 解决方案流程 - 四步闭环替代旧流程 */}
       <SolutionFlow />
-
-      {/* 4. 放大器定位 - AI 执行机构自己的教学标准 */}
-      <AmplifierSection />
 
       {/* 5. ROI 测算 - 先看回本与降本空间 */}
       <RoiSection />
