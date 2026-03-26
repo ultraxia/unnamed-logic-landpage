@@ -11,8 +11,8 @@ export function RoiSection() {
   const isVisible = useScrollReveal(sectionRef)
 
   // 用户填写：两个核心变量（用字符串避免开头 0 的问题）
-  const [studentCountStr, setStudentCountStr] = useState("300")
-  const [pricePerClassStr, setPricePerClassStr] = useState("200")
+  const [studentCountStr, setStudentCountStr] = useState("1500")
+  const [pricePerClassStr, setPricePerClassStr] = useState("150")
   const studentCount = Number(studentCountStr) || 0
   const pricePerClass = Number(pricePerClassStr) || 0
 
