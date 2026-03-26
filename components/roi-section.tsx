@@ -48,7 +48,7 @@ export function RoiSection() {
     const monthlyNewStudents = monthlyLeads * conversionRate
     const monthlyNewAfter = monthlyLeads * conversionRate * (1 + conversionLift)
     const monthlyExtraStudents = monthlyNewAfter - monthlyNewStudents
-    const annualEnrollGain = Math.round(monthlyExtraStudents * 12 * quarterlyRevenue)
+    const annualEnrollGain = Math.round(monthlyExtraStudents * 12 * annualRevenuePerStudent)
 
     // ── 续费增收 ──
     const renewedBefore = safeStudents * renewalRate
@@ -224,7 +224,7 @@ export function RoiSection() {
                 <p className="font-semibold text-foreground mb-3">计算假设与逻辑</p>
                 <p>· 单季度课次固定 20 节，年度按 3 个季度（36 周）计算</p>
                 <p>· 月商机数 = 学生规模 ÷ 10（月均来访/咨询量估算）</p>
-                <p>· 当前招生转化率假设 25%，系统介入后提升 15%（相对值）</p>
+                <p>· 当前招生转化率假设 25%，系统介入后提升 15%（相对值）；新生平均留存 3 个季度，按年度收入计算增益</p>
                 <p>· 当前续费率假设 60%，系统介入后提升 5 个百分点</p>
                 <p>· 老师月薪 {fmt(teacherSalary)} 元，企业用工成本 {fmt(calculated.employerCost)} 元/月，时薪 {calculated.hourlyCost} 元</p>
                 <p>· 单篇作文人工批改约 20 分钟，成本约 {calculated.singleEssayCost} 元/篇</p>
