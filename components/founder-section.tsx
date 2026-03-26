@@ -6,9 +6,9 @@ import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 import logoImage from "@/image.png"
 
 const credentials = [
-  "创始团队来自世界 500 强 AI 研发一线",
+  "创始团队来自世界 500 强研发一线",
   "具备工业级系统架构与大规模稳定性交付经验",
-  "国内最早将 AI 落地到教培运营全流程的团队之一",
+  "国内最早将 AI 落地到教培运营全流程的团队",
 ]
 
 export function FounderSection() {
