@@ -66,10 +66,13 @@ export function RoiSection() {
 
     const billableStudents = Math.max(safeStudents, 300)
     const systemAnnualCost = billableStudents * 15 * 12
-    const annualManualSaved = Math.max(0, annualManualCost - systemAnnualCost)
+
+    // ── 师资扩张容量（不计入 ROI，仅展示） ──
+    const teacherCount = Math.round(safeStudents / 50)               // 每位老师带50学生
+    const extraCapacity = teacherCount * 10                          // 每位老师可多带10学生
 
     // ── 综合 ROI ──
-    const totalAnnualGain = annualEnrollGain + annualRenewalGain + annualManualSaved
+    const totalAnnualGain = annualEnrollGain + annualRenewalGain
     const roiMultiple = systemAnnualCost > 0
       ? Math.round((totalAnnualGain / systemAnnualCost) * 10) / 10
       : 0
@@ -82,8 +85,9 @@ export function RoiSection() {
       // 续费
       extraRenewed: Math.round(extraRenewed),
       annualRenewalGain,
-      // 人工
-      annualManualSaved: Math.round(annualManualSaved),
+      // 师资扩张容量
+      teacherCount,
+      extraCapacity,
       systemAnnualCost,
       // 汇总
       totalAnnualGain,
@@ -184,11 +188,11 @@ export function RoiSection() {
                 <div className="flex size-8 items-center justify-center rounded-lg bg-primary/10">
                   <DollarSign className="size-4 text-primary" />
                 </div>
-                <p className="text-xs font-semibold text-muted-foreground">人工成本节省</p>
+                <p className="text-xs font-semibold text-muted-foreground">师资扩张容量</p>
               </div>
-              <p className="text-2xl font-bold text-foreground">¥{fmt(calculated.annualManualSaved)}</p>
+              <p className="text-2xl font-bold text-foreground">+{fmt(calculated.extraCapacity)} 人</p>
               <p className="mt-1 text-xs text-muted-foreground">
-                AI 批改替代人工，扣除系统年费后净节省
+                现有 {calculated.teacherCount} 位老师可多承接约 {calculated.extraCapacity} 名学生，无需增招
               </p>
             </div>
           </div>
@@ -226,9 +230,8 @@ export function RoiSection() {
                 <p>· 月商机数 = 学生规模 ÷ 10（月均来访/咨询量估算）</p>
                 <p>· 当前招生转化率假设 25%，系统介入后提升 15%（相对值）；新生平均留存 3 个季度，按年度收入计算增益</p>
                 <p>· 当前续费率假设 60%，系统介入后提升 5 个百分点</p>
-                <p>· 老师月薪 {fmt(teacherSalary)} 元，企业用工成本 {fmt(calculated.employerCost)} 元/月，时薪 {calculated.hourlyCost} 元</p>
-                <p>· 单篇作文人工批改约 20 分钟，成本约 {calculated.singleEssayCost} 元/篇</p>
-                <p>· 月作文量约 {fmt(calculated.monthlyEssayCount)} 篇，月人工批改成本约 ¥{fmt(calculated.monthlyManualCost)}</p>
+                <p>· 假设每位老师带 50 名学生，AI 批改介入后每位老师可多承接 10 名学生</p>
+                <p>· 师资扩张容量 = 老师数（{calculated.teacherCount} 人）× 10，仅作参考，不计入 ROI</p>
                 <p>· 系统年度成本含平台授权与服务费，按学生规模计算</p>
                 <div className="mt-3 pt-3 border-t border-border flex gap-4">
                   <div className="space-y-1">
