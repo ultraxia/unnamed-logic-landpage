@@ -6,105 +6,227 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 
+type ScenarioKey = "conservative" | "neutral" | "aggressive"
+
+type ScenarioPreset = {
+  label: string
+  description: string
+  leadRatePct: string
+  conversionRatePct: string
+  conversionLiftPct: string
+  renewalRatePct: string
+  renewalLiftPct: string
+  classesPerQuarter: string
+  systemCostPerStudent: string
+  minBillableStudents: string
+}
+
+const scenarioPresets: Record<ScenarioKey, ScenarioPreset> = {
+  conservative: {
+    label: "保守",
+    description: "低增幅+高成本",
+    leadRatePct: "8",
+    conversionRatePct: "22",
+    conversionLiftPct: "8",
+    renewalRatePct: "58",
+    renewalLiftPct: "3",
+    classesPerQuarter: "18",
+    systemCostPerStudent: "18",
+    minBillableStudents: "300",
+  },
+  neutral: {
+    label: "中性",
+    description: "默认推荐",
+    leadRatePct: "10",
+    conversionRatePct: "25",
+    conversionLiftPct: "15",
+    renewalRatePct: "60",
+    renewalLiftPct: "5",
+    classesPerQuarter: "20",
+    systemCostPerStudent: "15",
+    minBillableStudents: "300",
+  },
+  aggressive: {
+    label: "激进",
+    description: "高增幅+规模效应",
+    leadRatePct: "12",
+    conversionRatePct: "28",
+    conversionLiftPct: "22",
+    renewalRatePct: "65",
+    renewalLiftPct: "8",
+    classesPerQuarter: "22",
+    systemCostPerStudent: "13",
+    minBillableStudents: "500",
+  },
+}
+
+const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max)
+
+const sanitizeInteger = (value: string) => value.replace(/[^0-9]/g, "")
+
+const sanitizeDecimal = (value: string) =>
+  value
+    .replace(/[^0-9.]/g, "")
+    .replace(/(\..*)\./g, "$1")
+
+const toNumber = (value: string) => {
+  const parsed = Number(value)
+  return Number.isFinite(parsed) ? parsed : 0
+}
+
 export function RoiSection() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const isVisible = useScrollReveal(sectionRef)
 
-  // 用户填写：两个核心变量（用字符串避免开头 0 的问题）
+  const [scenario, setScenario] = useState<ScenarioKey>("neutral")
+
+  // 用户填写：两个核心业务变量
   const [studentCountStr, setStudentCountStr] = useState("1500")
   const [pricePerClassStr, setPricePerClassStr] = useState("150")
-  const studentCount = Number(studentCountStr) || 0
-  const pricePerClass = Number(pricePerClassStr) || 0
 
-  // 保留：批改人工成本计算
+  // 核心可编辑假设
+  const [leadRatePctStr, setLeadRatePctStr] = useState(scenarioPresets.neutral.leadRatePct)
+  const [conversionRatePctStr, setConversionRatePctStr] = useState(scenarioPresets.neutral.conversionRatePct)
+  const [conversionLiftPctStr, setConversionLiftPctStr] = useState(scenarioPresets.neutral.conversionLiftPct)
+  const [renewalRatePctStr, setRenewalRatePctStr] = useState(scenarioPresets.neutral.renewalRatePct)
+  const [renewalLiftPctStr, setRenewalLiftPctStr] = useState(scenarioPresets.neutral.renewalLiftPct)
+  const [classesPerQuarterStr, setClassesPerQuarterStr] = useState(scenarioPresets.neutral.classesPerQuarter)
+  const [systemCostPerStudentStr, setSystemCostPerStudentStr] = useState(scenarioPresets.neutral.systemCostPerStudent)
+  const [minBillableStudentsStr, setMinBillableStudentsStr] = useState(scenarioPresets.neutral.minBillableStudents)
+
+  // 产能/人工明细（进阶）
+  const [teacherStudentRatioStr, setTeacherStudentRatioStr] = useState("50")
+  const [extraCapacityPerTeacherStr, setExtraCapacityPerTeacherStr] = useState("10")
   const [teacherSalaryStr, setTeacherSalaryStr] = useState("8000")
   const [essaysPerStudentStr, setEssaysPerStudentStr] = useState("4")
-  const teacherSalary = Number(teacherSalaryStr) || 0
-  const essaysPerStudent = Number(essaysPerStudentStr) || 0
+
   const [showDetail, setShowDetail] = useState(false)
 
-  // 固定假设
+  const applyScenario = (nextScenario: ScenarioKey) => {
+    const preset = scenarioPresets[nextScenario]
+    setScenario(nextScenario)
+    setLeadRatePctStr(preset.leadRatePct)
+    setConversionRatePctStr(preset.conversionRatePct)
+    setConversionLiftPctStr(preset.conversionLiftPct)
+    setRenewalRatePctStr(preset.renewalRatePct)
+    setRenewalLiftPctStr(preset.renewalLiftPct)
+    setClassesPerQuarterStr(preset.classesPerQuarter)
+    setSystemCostPerStudentStr(preset.systemCostPerStudent)
+    setMinBillableStudentsStr(preset.minBillableStudents)
+  }
+
+  const studentCount = Math.max(toNumber(studentCountStr), 0)
+  const pricePerClass = Math.max(toNumber(pricePerClassStr), 0)
+
+  const leadRate = Math.max(toNumber(leadRatePctStr), 0) / 100
+  const conversionRate = clamp(toNumber(conversionRatePctStr) / 100, 0, 1)
+  const conversionLift = Math.max(toNumber(conversionLiftPctStr), 0) / 100
+  const renewalRate = clamp(toNumber(renewalRatePctStr) / 100, 0, 1)
+  const renewalLift = Math.max(toNumber(renewalLiftPctStr), 0) / 100
+
+  const classesPerQuarter = Math.max(toNumber(classesPerQuarterStr), 0)
+  const systemCostPerStudent = Math.max(toNumber(systemCostPerStudentStr), 0)
+  const minBillableStudents = Math.max(toNumber(minBillableStudentsStr), 0)
+
+  const teacherStudentRatio = Math.max(toNumber(teacherStudentRatioStr), 1)
+  const extraCapacityPerTeacher = Math.max(toNumber(extraCapacityPerTeacherStr), 0)
+  const teacherSalary = Math.max(toNumber(teacherSalaryStr), 0)
+  const essaysPerStudent = Math.max(toNumber(essaysPerStudentStr), 0)
+
+  // 固定人工成本参数
   const jiangsuEmployerRate = 0.375
   const fixedEssayMinutes = 20
   const fixedMonthlyHours = 176
-  const classesPerQuarter = 20        // 每季度课次
-  const conversionRate = 0.25         // 当前招生转化率
-  const conversionLift = 0.15         // 系统介入后转化率提升（相对值）
-  const renewalRate = 0.60            // 当前续费率
-  const renewalLift = 0.05            // 续费率提升（绝对值）
 
   const calculated = useMemo(() => {
-    const safeStudents = studentCount > 0 ? studentCount : 0
-    const safePrice = pricePerClass > 0 ? pricePerClass : 0
-    const safeSalary = teacherSalary > 0 ? teacherSalary : 0
-    const safeEssays = essaysPerStudent > 0 ? essaysPerStudent : 0
+    const safeStudents = studentCount
+    const safePrice = pricePerClass
 
-    // ── 客单价 ──
-    const quarterlyRevenue = classesPerQuarter * safePrice           // 单学生单季度收入
-    const annualRevenuePerStudent = quarterlyRevenue * 3             // 按 3 个季度算
+    // 客单价
+    const quarterlyRevenue = classesPerQuarter * safePrice
+    const annualRevenuePerStudent = quarterlyRevenue * 3
 
-    // ── 招生增收 ──
-    const monthlyLeads = Math.round(safeStudents / 10)               // 假设月商机数 = 学生数 / 10
+    // 招生增收（商机漏斗模型）
+    const monthlyLeads = safeStudents * leadRate
+    const conversionAfterRate = Math.min(conversionRate * (1 + conversionLift), 1)
     const monthlyNewStudents = monthlyLeads * conversionRate
-    const monthlyNewAfter = monthlyLeads * conversionRate * (1 + conversionLift)
-    const monthlyExtraStudents = monthlyNewAfter - monthlyNewStudents
+    const monthlyNewAfter = monthlyLeads * conversionAfterRate
+    const monthlyExtraStudents = Math.max(monthlyNewAfter - monthlyNewStudents, 0)
     const annualEnrollGain = Math.round(monthlyExtraStudents * 12 * annualRevenuePerStudent)
 
-    // ── 续费增收 ──
+    // 续费增收（cohort 增量模型）
+    const renewalAfterRate = Math.min(renewalRate + renewalLift, 1)
     const renewedBefore = safeStudents * renewalRate
-    const renewedAfter = safeStudents * (renewalRate + renewalLift)
-    const extraRenewed = renewedAfter - renewedBefore
+    const renewedAfter = safeStudents * renewalAfterRate
+    const extraRenewed = Math.max(renewedAfter - renewedBefore, 0)
     const annualRenewalGain = Math.round(extraRenewed * quarterlyRevenue)
 
-    // ── 人工批改节省 ──
-    const employerCost = safeSalary * (1 + jiangsuEmployerRate)
-    const hourlyCost = employerCost / fixedMonthlyHours
-    const singleEssayCost = hourlyCost * (fixedEssayMinutes / 60)
-    const monthlyEssayCount = safeStudents * safeEssays
-    const monthlyManualCost = singleEssayCost * monthlyEssayCount
-    const annualManualCost = monthlyManualCost * 12
+    // 师资扩张容量（不计入 ROI）
+    const teacherCount = Math.round(safeStudents / teacherStudentRatio)
+    const extraCapacity = Math.round(teacherCount * extraCapacityPerTeacher)
 
-    const billableStudents = Math.max(safeStudents, 300)
-    const systemAnnualCost = billableStudents * 15 * 12
+    // 系统成本
+    const billableStudents = Math.max(safeStudents, minBillableStudents)
+    const systemAnnualCost = Math.round(billableStudents * systemCostPerStudent * 12)
 
-    // ── 师资扩张容量（不计入 ROI，仅展示） ──
-    const teacherCount = Math.round(safeStudents / 50)               // 每位老师带50学生
-    const extraCapacity = teacherCount * 10                          // 每位老师可多带10学生
-
-    // ── 综合 ROI ──
+    // 综合 ROI
     const totalAnnualGain = annualEnrollGain + annualRenewalGain
     const roiMultiple = systemAnnualCost > 0
       ? Math.round((totalAnnualGain / systemAnnualCost) * 10) / 10
       : 0
 
+    // 人工批改成本（参考，不计入 ROI）
+    const employerCost = teacherSalary * (1 + jiangsuEmployerRate)
+    const hourlyCost = employerCost / fixedMonthlyHours
+    const singleEssayCost = hourlyCost * (fixedEssayMinutes / 60)
+    const monthlyEssayCount = safeStudents * essaysPerStudent
+    const monthlyManualCost = singleEssayCost * monthlyEssayCount
+    const annualManualCost = monthlyManualCost * 12
+
     return {
-      // 招生
       monthlyLeads,
-      monthlyExtraStudents: Math.round(monthlyExtraStudents * 10) / 10,
+      conversionAfterRate,
+      monthlyExtraStudents,
       annualEnrollGain,
-      // 续费
-      extraRenewed: Math.round(extraRenewed),
+      renewalAfterRate,
+      extraRenewed,
       annualRenewalGain,
-      // 师资扩张容量
       teacherCount,
       extraCapacity,
+      billableStudents,
       systemAnnualCost,
-      // 汇总
       totalAnnualGain,
       roiMultiple,
-      // 明细（展开用）
-      employerCost: Math.round(employerCost),
-      hourlyCost: Math.round(hourlyCost * 10) / 10,
-      singleEssayCost: Math.round(singleEssayCost * 10) / 10,
-      monthlyEssayCount,
-      monthlyManualCost: Math.round(monthlyManualCost),
-      annualManualCost: Math.round(annualManualCost),
       quarterlyRevenue,
       annualRevenuePerStudent,
+      monthlyManualCost,
+      annualManualCost,
+      employerCost,
+      hourlyCost,
+      singleEssayCost,
+      monthlyEssayCount,
     }
-  }, [studentCount, pricePerClass, teacherSalary, essaysPerStudent])
+  }, [
+    studentCount,
+    pricePerClass,
+    classesPerQuarter,
+    leadRate,
+    conversionRate,
+    conversionLift,
+    renewalRate,
+    renewalLift,
+    teacherStudentRatio,
+    extraCapacityPerTeacher,
+    minBillableStudents,
+    systemCostPerStudent,
+    teacherSalary,
+    essaysPerStudent,
+  ])
 
-  const fmt = (n: number) => n.toLocaleString("zh-CN")
+  const fmt = (n: number) => Math.round(n).toLocaleString("zh-CN")
+  const fmtNum = (n: number, digits = 1) =>
+    n.toLocaleString("zh-CN", { minimumFractionDigits: 0, maximumFractionDigits: digits })
+  const fmtPct = (n: number, digits = 1) => `${(n * 100).toFixed(digits).replace(/\.0+$/, "")}%`
 
   return (
     <section id="roi" ref={sectionRef} className="overflow-x-hidden scroll-mt-24 px-6 py-20 md:py-28">
@@ -119,7 +241,7 @@ export function RoiSection() {
             {"数字不会说谎"}
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm text-muted-foreground sm:text-base">
-            {"两个数字，看清一年的回报"}
+            {"切换场景、微调参数，查看可解释的一年回报"}
           </p>
         </div>
 
@@ -128,16 +250,40 @@ export function RoiSection() {
             isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}
         >
+          {/* 三档场景 */}
+          <div className="mb-8">
+            <p className="text-sm font-medium text-foreground">测算场景</p>
+            <div className="mt-3 grid gap-3 sm:grid-cols-3">
+              {(Object.entries(scenarioPresets) as [ScenarioKey, ScenarioPreset][]).map(([key, preset]) => (
+                <button
+                  key={key}
+                  type="button"
+                  onClick={() => applyScenario(key)}
+                  aria-pressed={scenario === key}
+                  className={`rounded-xl border px-4 py-3 text-left transition-colors ${
+                    scenario === key
+                      ? "border-primary bg-primary/5"
+                      : "border-border bg-background hover:border-primary/40"
+                  }`}
+                >
+                  <p className="text-sm font-semibold text-foreground">{preset.label}</p>
+                  <p className="mt-1 text-xs text-muted-foreground">{preset.description}</p>
+                </button>
+              ))}
+            </div>
+            <p className="mt-2 text-xs text-muted-foreground">点击场景会重置关键假设，之后可继续手动微调。</p>
+          </div>
+
           {/* 两个核心输入 */}
-          <div className="mb-8 grid gap-4 sm:grid-cols-2">
+          <div className="mb-6 grid gap-4 sm:grid-cols-2">
             <label className="space-y-2">
               <p className="text-sm font-medium text-foreground">在读学生数（人）</p>
               <Input
                 type="text"
                 inputMode="numeric"
                 value={studentCountStr}
-                onChange={(e) => setStudentCountStr(e.target.value.replace(/[^0-9]/g, ""))}
-                className="text-lg h-12"
+                onChange={(e) => setStudentCountStr(sanitizeInteger(e.target.value))}
+                className="h-12 text-lg"
               />
             </label>
             <label className="space-y-2">
@@ -146,13 +292,100 @@ export function RoiSection() {
                 type="text"
                 inputMode="numeric"
                 value={pricePerClassStr}
-                onChange={(e) => setPricePerClassStr(e.target.value.replace(/[^0-9]/g, ""))}
-                className="text-lg h-12"
+                onChange={(e) => setPricePerClassStr(sanitizeInteger(e.target.value))}
+                className="h-12 text-lg"
               />
               <p className="text-xs text-muted-foreground">
                 单季度 {fmt(calculated.quarterlyRevenue)} 元/生，约 {fmt(calculated.annualRevenuePerStudent)} 元/生/年
               </p>
             </label>
+          </div>
+
+          {/* 关键可编辑假设 */}
+          <div className="mb-8 rounded-xl border border-border bg-secondary/40 p-4 sm:p-5">
+            <p className="mb-3 text-sm font-medium text-foreground">关键假设（可编辑）</p>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              <label className="space-y-1">
+                <p className="text-xs text-muted-foreground">月商机系数（%）</p>
+                <Input
+                  type="text"
+                  inputMode="decimal"
+                  value={leadRatePctStr}
+                  onChange={(e) => setLeadRatePctStr(sanitizeDecimal(e.target.value))}
+                  className="h-9 text-sm"
+                />
+              </label>
+              <label className="space-y-1">
+                <p className="text-xs text-muted-foreground">当前招生转化率（%）</p>
+                <Input
+                  type="text"
+                  inputMode="decimal"
+                  value={conversionRatePctStr}
+                  onChange={(e) => setConversionRatePctStr(sanitizeDecimal(e.target.value))}
+                  className="h-9 text-sm"
+                />
+              </label>
+              <label className="space-y-1">
+                <p className="text-xs text-muted-foreground">转化率相对提升（%）</p>
+                <Input
+                  type="text"
+                  inputMode="decimal"
+                  value={conversionLiftPctStr}
+                  onChange={(e) => setConversionLiftPctStr(sanitizeDecimal(e.target.value))}
+                  className="h-9 text-sm"
+                />
+              </label>
+              <label className="space-y-1">
+                <p className="text-xs text-muted-foreground">当前续费率（%）</p>
+                <Input
+                  type="text"
+                  inputMode="decimal"
+                  value={renewalRatePctStr}
+                  onChange={(e) => setRenewalRatePctStr(sanitizeDecimal(e.target.value))}
+                  className="h-9 text-sm"
+                />
+              </label>
+              <label className="space-y-1">
+                <p className="text-xs text-muted-foreground">续费率提升（百分点）</p>
+                <Input
+                  type="text"
+                  inputMode="decimal"
+                  value={renewalLiftPctStr}
+                  onChange={(e) => setRenewalLiftPctStr(sanitizeDecimal(e.target.value))}
+                  className="h-9 text-sm"
+                />
+              </label>
+              <label className="space-y-1">
+                <p className="text-xs text-muted-foreground">单季度课次（节）</p>
+                <Input
+                  type="text"
+                  inputMode="numeric"
+                  value={classesPerQuarterStr}
+                  onChange={(e) => setClassesPerQuarterStr(sanitizeInteger(e.target.value))}
+                  className="h-9 text-sm"
+                />
+              </label>
+              <label className="space-y-1">
+                <p className="text-xs text-muted-foreground">系统单价（元/生/月）</p>
+                <Input
+                  type="text"
+                  inputMode="decimal"
+                  value={systemCostPerStudentStr}
+                  onChange={(e) => setSystemCostPerStudentStr(sanitizeDecimal(e.target.value))}
+                  className="h-9 text-sm"
+                />
+              </label>
+              <label className="space-y-1">
+                <p className="text-xs text-muted-foreground">最低计费学生数（人）</p>
+                <Input
+                  type="text"
+                  inputMode="numeric"
+                  value={minBillableStudentsStr}
+                  onChange={(e) => setMinBillableStudentsStr(sanitizeInteger(e.target.value))}
+                  className="h-9 text-sm"
+                />
+              </label>
+            </div>
           </div>
 
           {/* 三维增益 */}
@@ -166,7 +399,7 @@ export function RoiSection() {
               </div>
               <p className="text-2xl font-bold text-foreground">¥{fmt(calculated.annualEnrollGain)}</p>
               <p className="mt-1 text-xs text-muted-foreground">
-                转化率提升 15%，月多成交约 {calculated.monthlyExtraStudents} 人
+                月商机约 {fmtNum(calculated.monthlyLeads, 1)}，转化率 {fmtPct(conversionRate, 0)} → {fmtPct(calculated.conversionAfterRate, 1)}
               </p>
             </div>
 
@@ -179,7 +412,7 @@ export function RoiSection() {
               </div>
               <p className="text-2xl font-bold text-foreground">¥{fmt(calculated.annualRenewalGain)}</p>
               <p className="mt-1 text-xs text-muted-foreground">
-                续费率提升 5%，每季度多留约 {calculated.extraRenewed} 人
+                续费率 {fmtPct(renewalRate, 0)} → {fmtPct(calculated.renewalAfterRate, 0)}，每季度多留约 {fmtNum(calculated.extraRenewed, 0)} 人
               </p>
             </div>
 
@@ -192,7 +425,7 @@ export function RoiSection() {
               </div>
               <p className="text-2xl font-bold text-foreground">+{fmt(calculated.extraCapacity)} 人</p>
               <p className="mt-1 text-xs text-muted-foreground">
-                现有 {calculated.teacherCount} 位老师可多承接约 {calculated.extraCapacity} 名学生，无需增招
+                现有 {fmt(calculated.teacherCount)} 位老师，在不扩编前提下可多承接约 {fmt(calculated.extraCapacity)} 名学生
               </p>
             </div>
           </div>
@@ -204,59 +437,101 @@ export function RoiSection() {
               ¥{fmt(calculated.totalAnnualGain)}
             </p>
             <p className="mt-2 text-sm text-muted-foreground">
-              投资回报约{" "}
-              <span className="font-bold text-emerald-600">{calculated.roiMultiple}x</span>
-              ，系统年费以实际规模单独报价
+              投资回报约 <span className="font-bold text-emerald-600">{calculated.roiMultiple}x</span>
+              ，系统年费按 {fmt(calculated.billableStudents)} 人 × ¥{fmt(systemCostPerStudent)} /生/月测算
             </p>
           </div>
 
-          {/* 展开详细计算 */}
-          <div className="mt-5">
+          {/* 公式来源说明 */}
+          <div className="mt-5 rounded-xl border border-primary/20 bg-primary/5 p-5 text-xs text-muted-foreground">
+            <p className="mb-2 font-semibold text-foreground">公式来源说明</p>
+            <p>· 招生增收模型：销售漏斗公式（商机量 × 转化率 × 客单价），商机系数和转化提升均可编辑。</p>
+            <p className="mt-1">· 续费增收模型：续费 cohort 公式（在读生 × 续费提升百分点 × 单季度客单价）。</p>
+            <p className="mt-1">· ROI 模型： (招生增收 + 续费增收) ÷ 系统年费，系统年费 = 计费学生数 × 单价 × 12。</p>
             <button
-              className="text-xs text-muted-foreground underline underline-offset-4 hover:text-foreground transition-colors"
-              onClick={() => setShowDetail((p) => !p)}
+              type="button"
+              className="mt-3 underline underline-offset-4 transition-colors hover:text-foreground"
+              onClick={() => setShowDetail((prev) => !prev)}
             >
-              {showDetail ? "收起计算明细" : "查看计算逻辑与假设"}
+              {showDetail ? "收起完整公式与代入值" : "查看完整公式与代入值"}
             </button>
+          </div>
 
-            <div
-              className={`overflow-hidden transition-all duration-300 ease-out ${
-                showDetail ? "mt-4 max-h-[600px] opacity-100" : "mt-0 max-h-0 opacity-0"
-              }`}
-            >
-              <div className="rounded-xl border border-border bg-secondary/50 p-5 text-xs text-muted-foreground space-y-2">
-                <p className="font-semibold text-foreground mb-3">计算假设与逻辑</p>
-                <p>· 单季度课次固定 20 节，年度按 3 个季度（36 周）计算</p>
-                <p>· 月商机数 = 学生规模 ÷ 10（月均来访/咨询量估算）</p>
-                <p>· 当前招生转化率假设 25%，系统介入后提升 15%（相对值）；新生平均留存 3 个季度，按年度收入计算增益</p>
-                <p>· 当前续费率假设 60%，系统介入后提升 5 个百分点</p>
-                <p>· 假设每位老师带 50 名学生，AI 批改介入后每位老师可多承接 10 名学生</p>
-                <p>· 师资扩张容量 = 老师数（{calculated.teacherCount} 人）× 10，仅作参考，不计入 ROI</p>
-                <p>· 系统年度成本含平台授权与服务费，按学生规模计算</p>
-                <div className="mt-3 pt-3 border-t border-border flex gap-4">
-                  <div className="space-y-1">
-                    <p className="text-muted-foreground">老师月薪</p>
-                    <Input
-                      type="number"
-                      min={0}
-                      value={teacherSalaryStr}
-                      onChange={(e) => setTeacherSalaryStr(e.target.value.replace(/[^0-9]/g, ""))}
-                      className="h-8 w-32 text-xs"
-                    />
-                  </div>
-                  <div className="space-y-1">
-                    <p className="text-muted-foreground">人均月作文数</p>
-                    <Input
-                      type="number"
-                      min={0}
-                      value={essaysPerStudentStr}
-                      onChange={(e) => setEssaysPerStudentStr(e.target.value.replace(/[^0-9]/g, ""))}
-                      className="h-8 w-32 text-xs"
-                    />
-                  </div>
-                </div>
-                <p className="pt-2 italic">* 以上均为保守估算，实际效果因机构运营水平存在差异。</p>
+          <div
+            className={`overflow-hidden transition-all duration-300 ease-out ${
+              showDetail ? "mt-4 max-h-[900px] opacity-100" : "mt-0 max-h-0 opacity-0"
+            }`}
+          >
+            <div className="rounded-xl border border-border bg-secondary/50 p-5 text-xs text-muted-foreground">
+              <p className="mb-3 font-semibold text-foreground">完整公式与当前代入值</p>
+              <p>
+                · 月商机数 = 在读学生数 × 商机系数 = {fmt(studentCount)} × {fmtNum(leadRate * 100, 2)}% = {fmtNum(calculated.monthlyLeads, 1)}
+              </p>
+              <p className="mt-1">
+                · 招生增收 = 月增量新生 × 12 × 年度客单价 = {fmtNum(calculated.monthlyExtraStudents, 1)} × 12 × ¥{fmt(calculated.annualRevenuePerStudent)}
+              </p>
+              <p className="mt-1">
+                · 续费增收 = 在读学生数 × 续费提升百分点 × 单季度客单价 = {fmt(studentCount)} × {fmtNum((calculated.renewalAfterRate - renewalRate) * 100, 2)}% × ¥{fmt(calculated.quarterlyRevenue)}
+              </p>
+              <p className="mt-1">
+                · 系统年费 = max(在读学生数, 最低计费学生数) × 单价 × 12 = {fmt(calculated.billableStudents)} × ¥{fmt(systemCostPerStudent)} × 12
+              </p>
+              <p className="mt-1">
+                · ROI 倍数 = (¥{fmt(calculated.annualEnrollGain)} + ¥{fmt(calculated.annualRenewalGain)}) ÷ ¥{fmt(calculated.systemAnnualCost)} = {calculated.roiMultiple}x
+              </p>
+
+              <div className="my-3 border-t border-border" />
+
+              <p className="mb-2 font-semibold text-foreground">进阶参数（产能与人工成本）</p>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                <label className="space-y-1">
+                  <p>师生配比（人/老师）</p>
+                  <Input
+                    type="text"
+                    inputMode="numeric"
+                    value={teacherStudentRatioStr}
+                    onChange={(e) => setTeacherStudentRatioStr(sanitizeInteger(e.target.value))}
+                    className="h-8 text-xs"
+                  />
+                </label>
+                <label className="space-y-1">
+                  <p>每位老师新增容量（人）</p>
+                  <Input
+                    type="text"
+                    inputMode="numeric"
+                    value={extraCapacityPerTeacherStr}
+                    onChange={(e) => setExtraCapacityPerTeacherStr(sanitizeInteger(e.target.value))}
+                    className="h-8 text-xs"
+                  />
+                </label>
+                <label className="space-y-1">
+                  <p>老师月薪（元）</p>
+                  <Input
+                    type="text"
+                    inputMode="numeric"
+                    value={teacherSalaryStr}
+                    onChange={(e) => setTeacherSalaryStr(sanitizeInteger(e.target.value))}
+                    className="h-8 text-xs"
+                  />
+                </label>
+                <label className="space-y-1">
+                  <p>人均月作文数</p>
+                  <Input
+                    type="text"
+                    inputMode="numeric"
+                    value={essaysPerStudentStr}
+                    onChange={(e) => setEssaysPerStudentStr(sanitizeInteger(e.target.value))}
+                    className="h-8 text-xs"
+                  />
+                </label>
               </div>
+              <p className="mt-3">
+                · 人工批改月成本（参考）= ¥{fmt(calculated.monthlyManualCost)}，年成本约 ¥{fmt(calculated.annualManualCost)}（当前未计入 ROI 倍数）
+              </p>
+              <p className="mt-1">
+                · 成本明细：老师全口径成本 ¥{fmt(calculated.employerCost)}/月，时薪约 ¥{fmtNum(calculated.hourlyCost, 1)}，单篇批改约 ¥{fmtNum(calculated.singleEssayCost, 1)}，月批改量 {fmt(calculated.monthlyEssayCount)} 篇
+              </p>
+              <p className="mt-2 italic">* 测算用于投资决策预估，建议结合你机构真实历史数据做二次校准。</p>
             </div>
           </div>
         </div>
@@ -279,7 +554,7 @@ export function RoiSection() {
         </div>
 
         <p className="mt-3 text-center text-xs text-muted-foreground">
-          {"* 测算结果仅供参考，可预约演示获取针对您机构的精准测算。"}
+          {"* 测算结果用于决策参考，可预约演示获取基于历史经营数据的精准测算。"}
         </p>
       </div>
     </section>

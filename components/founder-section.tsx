@@ -3,7 +3,6 @@
 import { useRef } from "react"
 import Image from "next/image"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
-import logoImage from "@/image.png"
 
 const credentials = [
   "创始团队来自世界 500 强研发一线",
@@ -28,7 +27,7 @@ export function FounderSection() {
               {/* Avatar */}
               <div className="flex-shrink-0">
                 <div className="relative size-16 overflow-hidden rounded-xl border border-border bg-card md:size-20">
-                  <Image src={logoImage} alt="原点智能 Logo" fill className="object-contain p-1.5 md:p-2" />
+                  <Image src="/logo.png" alt="原点智能 Logo" fill className="object-contain p-1.5 md:p-2" />
                 </div>
               </div>
 
